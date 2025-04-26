@@ -1,0 +1,20 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-admin-panel',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './admin-panel.component.html',
+  styleUrl: './admin-panel.component.css'
+})
+export class AdminPanelComponent {
+
+  constructor(private router: Router) {}
+
+  logout() {
+    sessionStorage.removeItem('jwt');
+    this.router.navigate(['/']);
+  }
+}

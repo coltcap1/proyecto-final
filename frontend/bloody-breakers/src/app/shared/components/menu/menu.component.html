@@ -1,0 +1,6 @@
+<nav class="menu-container">
+    @for (item of menuItems; track item.label) {
+      <a [routerLink]="item.path" class="menu-link">{{ item.label }}</a>
+    }
+  </nav>
+  
