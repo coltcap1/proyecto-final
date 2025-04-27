@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-enemigo-list',
   imports: [],
   templateUrl: './enemigo-list.component.html',
-  styleUrl: './enemigo-list.component.css'
+  styleUrl: './enemigo-list.component.scss'
 })
 export class EnemigoListComponent {
 

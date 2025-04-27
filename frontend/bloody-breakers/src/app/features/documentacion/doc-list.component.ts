@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-doc-list',
   imports: [],
   templateUrl: './doc-list.component.html',
-  styleUrl: './doc-list.component.css'
+  styleUrl: './doc-list.component.scss'
 })
 export class DocListComponent {
 

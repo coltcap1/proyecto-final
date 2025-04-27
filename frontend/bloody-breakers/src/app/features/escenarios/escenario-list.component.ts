@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-escenario-list',
   imports: [],
   templateUrl: './escenario-list.component.html',
-  styleUrl: './escenario-list.component.css'
+  styleUrl: './escenario-list.component.scss'
 })
 export class EscenarioListComponent {
 

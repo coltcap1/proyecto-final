@@ -1,6 +1,12 @@
-<nav class="menu-container">
-    @for (item of menuItems; track item.label) {
-      <a [routerLink]="item.path" class="menu-link">{{ item.label }}</a>
-    }
-  </nav>
-  
+<div class="menu-hamburguesa">
+  <button class="hamburger-button" (click)="toggleMenu()">
+    ☰
+  </button>
+
+  @if (isOpen()) {
+    <nav class="menu-items">
+      @for (item of menuItems; track item.label) {
+        <a [routerLink]="item.path" class="menu-link" (click)="toggleMenu()">{{ item.label }}</a>
+      }
+    </nav>
+  }

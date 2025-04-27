@@ -1,3 +1,9 @@
 <section id="mundos">
     <!-- Contenido de mundos aquí -->
-  </section>
+    <section class="mundos-container">
+      @for (mundo of mundos(); track mundo.id) {
+        <app-mundo [mundo]="mundo" />
+      }
+    </section>
+    
+</section>

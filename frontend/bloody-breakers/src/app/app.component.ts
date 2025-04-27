@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginService } from './core/services/login.service';
 import { HomeComponent } from './features/inicio/home.component';
+import { MundoListComponent } from './features/mundo/mundo-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,HomeComponent],
+  imports: [RouterOutlet,HomeComponent,MundoListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

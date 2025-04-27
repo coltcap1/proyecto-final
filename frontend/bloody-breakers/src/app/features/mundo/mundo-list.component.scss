@@ -1,0 +1,16 @@
+*{
+    background-color: rgb(158, 62, 69)
+}
+
+section#mundos{
+    height: 100%;
+    width: 100%;
+}
+
+.mundos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  

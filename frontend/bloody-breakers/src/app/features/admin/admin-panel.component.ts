@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './admin-panel.component.html',
-  styleUrl: './admin-panel.component.css'
+  styleUrl: './admin-panel.component.scss'
 })
 export class AdminPanelComponent {
 

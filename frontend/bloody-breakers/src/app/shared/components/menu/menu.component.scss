@@ -1,25 +1,42 @@
-.menu-container {
-    width: 100%;
-    background-color: #222;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+.menu-hamburguesa {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.hamburger-button {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+.menu-items {
+  background-color: #222;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  border-radius: 8px;
+  align-items: stretch; /* NUEVO: que se estiren correctamente */
+  overflow: visible;
+  min-width: 200px; /* NUEVO: asegura que el fondo cubra todo */
+}
+
+.menu-link {
+  color: white;
+  padding: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #444;
+  text-align: right; /* NUEVO: para alinear texto a la derecha */
+
+  &:hover {
+    background-color: #444;
   }
-  
-  .menu-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-  
-    &:hover {
-      color: #ff6666;
-    }
-  }
-  
+}

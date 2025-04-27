@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-personaje-list',
   imports: [],
   templateUrl: './personaje-list.component.html',
-  styleUrl: './personaje-list.component.css'
+  styleUrl: './personaje-list.component.scss'
 })
 export class PersonajeListComponent {
 

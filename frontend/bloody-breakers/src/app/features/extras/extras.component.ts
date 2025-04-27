@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-extras',
   imports: [],
   templateUrl: './extras.component.html',
-  styleUrl: './extras.component.css'
+  styleUrl: './extras.component.scss'
 })
 export class ExtrasComponent {
 

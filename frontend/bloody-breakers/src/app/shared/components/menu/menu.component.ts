@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -11,6 +11,8 @@ import { RouterLink } from '@angular/router';
 })
 export class MenuComponent {
 
+  isOpen = signal(false);
+
   menuItems = [
     { label: 'Inicio', path: '/' },
     { label: 'Mundos', path: '/mundo' },
@@ -19,4 +21,8 @@ export class MenuComponent {
     { label: 'Escenarios', path: '/escenarios' },
     { label: 'Documentación', path: '/documentacion' },
   ];
+
+  toggleMenu() {
+    this.isOpen.update(open => !open);
+  }
 }
