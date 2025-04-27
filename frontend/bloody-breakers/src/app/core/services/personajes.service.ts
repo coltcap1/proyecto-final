@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Personaje } from '../../models/personaje.model';
 import { Observable } from 'rxjs';
@@ -8,27 +8,27 @@ import { Observable } from 'rxjs';
 })
 export class PersonajesService {
 
-  private apiUrl = 'http://localhost:3000/personajes';
+  // private apiUrl = 'http://localhost:3000/personajes';
 
-  constructor(private http: HttpClient) {}
+  // private http = inject(HttpClient);
 
-  getAll(): Observable<Personaje[]> {
-    return this.http.get<Personaje[]>(this.apiUrl);
-  }
+  // getAll(): Observable<Personaje[]> {
+  //   return this.http.get<Personaje[]>(this.apiUrl);
+  // }
 
-  getById(id: number): Observable<Personaje> {
-    return this.http.get<Personaje>(`${this.apiUrl}/${id}`);
-  }
+  // getById(id: number): Observable<Personaje> {
+  //   return this.http.get<Personaje>(`${this.apiUrl}/${id}`);
+  // }
 
-  create(personaje: Personaje): Observable<Personaje> {
-    return this.http.post<Personaje>(this.apiUrl, personaje);
-  }
+  // create(personaje: Personaje): Observable<Personaje> {
+  //   return this.http.post<Personaje>(this.apiUrl, personaje);
+  // }
 
-  update(id: number, personaje: Personaje): Observable<Personaje> {
-    return this.http.put<Personaje>(`${this.apiUrl}/${id}`, personaje);
-  }
+  // update(id: number, personaje: Personaje): Observable<Personaje> {
+  //   return this.http.put<Personaje>(`${this.apiUrl}/${id}`, personaje);
+  // }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
+  // delete(id: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  // }
 }

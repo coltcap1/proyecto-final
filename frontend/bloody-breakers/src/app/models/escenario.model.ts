@@ -4,5 +4,5 @@ export interface Escenario {
   id: number;
   nombre: string;
   idMundo: number;
-  imagenes?: Imagen[];
+  imagenes: Imagen[];
 }

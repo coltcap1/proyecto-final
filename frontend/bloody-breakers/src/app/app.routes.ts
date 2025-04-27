@@ -11,7 +11,11 @@ import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'mundo', component: MundoListComponent },
+  {
+    path: 'mundos',
+    loadComponent: () => import('./features/mundo/mundo-list.component')
+      .then(m => m.MundoListComponent)
+  },
   { path: 'personajes', component: PersonajeListComponent },
   { path: 'enemigos', component: EnemigoListComponent },
   { path: 'escenarios', component: EscenarioListComponent },

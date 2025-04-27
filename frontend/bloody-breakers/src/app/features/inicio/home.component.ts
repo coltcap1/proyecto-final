@@ -19,8 +19,8 @@ export class HomeComponent {
     const scroll = window.scrollY || document.documentElement.scrollTop;
     this.scrollY.set(scroll);
 
-    const homeHeight = window.innerHeight;
-    const progreso = Math.min(scroll / (homeHeight * 0.7), 1);
+    const homeHeight = window.innerHeight * 2.5;
+    const progreso = Math.min(scroll / (homeHeight * 0.6), 1);
 
     // Mostrar logo estático solo al final
     if (progreso >= 1) {
@@ -32,7 +32,7 @@ export class HomeComponent {
 
   calcularTransformacion(): string {
     const y = this.scrollY();
-    const homeHeight = window.innerHeight;
+    const homeHeight = window.innerHeight * 2.5;
     const progreso = Math.min(y / (homeHeight * 0.7), 1);
 
     const moveX = -50 - (progreso * 43);

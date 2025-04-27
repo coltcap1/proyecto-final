@@ -5,5 +5,5 @@ export interface Habilidad {
   nombre: string;
   dano: number; 
   iconoUrl: string;
-  imagenes?: Imagen[]; 
+  imagenes: Imagen[]; 
 }
