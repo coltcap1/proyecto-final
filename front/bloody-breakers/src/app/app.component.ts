@@ -1,5 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
-import { LoginService } from './core/services/login.service';
+import { Component, signal } from '@angular/core';
 import { HomeComponent } from './features/inicio/home.component';
 import { MundoListComponent } from './features/mundo/mundo-list.component';
 import { EscenarioListComponent } from './features/escenarios/escenario-list.component';

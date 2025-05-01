@@ -1,27 +1,38 @@
-<div class="login-container">
-  <h2>Iniciar sesión</h2>
+<div class="container mt-5">
+  <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
+    <h2 class="text-center text-danger mb-4">Iniciar sesión</h2>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <label>
-      Email:
-      <input formControlName="email" />
-    </label>
-    @if (email?.invalid && email?.touched) {
-    <div class="error">Email obligatorio o inválido</div>
-    }
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" />
+        @if (email?.invalid && email?.touched) {
+          <div class="form-text text-danger">Email obligatorio o inválido</div>
+        }
+      </div>
 
-    <label>
-      Contraseña:
-      <input type="password" formControlName="password" />
-    </label>
-    @if (password?.invalid && password?.touched) {
-    <div class="error">Contraseña obligatoria</div>
-    }
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control" formControlName="password" />
+        @if (password?.invalid && password?.touched) {
+          <div class="form-text text-danger">Contraseña obligatoria</div>
+        }
+      </div>
 
-    @if (errorMessage) {
-    <div class="error">{{ errorMessage }}</div>
-    }
+      @if (errorMessage) {
+        <div class="alert alert-danger py-2">
+          {{ errorMessage }}
+        </div>
+      }
 
-    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
-  </form>
+      <button type="submit" class="btn btn-danger w-100" [disabled]="loginForm.invalid">
+        Entrar
+      </button>
+    </form>
+
+    <div class="text-center mt-3">
+      ¿No estás registrado?
+      <a href="#registro" class="text-primary fw-bold">Regístrate aquí</a>
+    </div>
+  </div>
 </div>

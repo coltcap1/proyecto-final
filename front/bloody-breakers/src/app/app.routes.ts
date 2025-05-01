@@ -11,16 +11,12 @@ import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  {
-    path: 'mundos',
-    loadComponent: () => import('./features/mundo/mundo-list.component')
-      .then(m => m.MundoListComponent)
-  },
+  { path: 'mundos', component: MundoListComponent },
   { path: 'personajes', component: PersonajeListComponent },
   { path: 'enemigos', component: EnemigoListComponent },
   { path: 'escenarios', component: EscenarioListComponent },
   { path: 'documentacion', component: DocListComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'admin', canActivate: [authGuard], loadComponent: () => import('./features/admin/admin-panel.component').then(m => m.AdminPanelComponent) },
+  // { path: 'admin', canActivate: [authGuard], loadComponent: () => import('./features/admin/admin-panel.component').then(m => m.AdminPanelComponent) },
   { path: '**', redirectTo: '' }
 ];
