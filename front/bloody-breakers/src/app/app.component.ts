@@ -1,35 +1,33 @@
-import { Component, signal } from '@angular/core';
-import { HomeComponent } from './features/inicio/home.component';
-import { MundoListComponent } from './features/mundo/mundo-list.component';
-import { EscenarioListComponent } from './features/escenarios/escenario-list.component';
-import { PersonajeListComponent } from './features/personajes/personaje-list.component';
-import { EnemigoListComponent } from './features/enemigos/enemigo-list.component';
-import { LoginComponent } from './features/login/login.component';
-import { DocListComponent } from './features/documentacion/doc-list.component';
-import { RegisterComponent } from './features/register/register.component';
+import { Component, computed, inject, Signal, signal } from '@angular/core';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { MenuComponent } from './shared/components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HomeComponent,
-    MundoListComponent,
-    EscenarioListComponent,
-    PersonajeListComponent,
-    EnemigoListComponent,
-    LoginComponent,
-    DocListComponent,
-    RegisterComponent],
+  standalone: true,
+  imports: [RouterOutlet, MenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'bloody-breakers';
 
+  private router = inject(Router);
+
+  staticLogoVisible = true;
+
   isLoggedIn = signal(this.checkLogged());
   isAdmin = signal(this.checkAdmin());
-  mostrarRegistro = signal(false);
 
-  activarRegistro() {
-    this.mostrarRegistro.set(true);
+  constructor() {
+    // ⬇️ Scroll automático al top al cambiar de ruta
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event:NavigationEnd) => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        this.staticLogoVisible = event.urlAfterRedirects === '/';
+      });
   }
 
   private checkLogged(): boolean {
@@ -40,10 +38,12 @@ export class AppComponent {
     return sessionStorage.getItem('role') === 'ADMIN';
   }
 
+  goHome():void{
+    this.router.navigate(['/']);
+  }
+
   onLoginSuccess() {
     this.isLoggedIn.set(true);
     this.isAdmin.set(this.checkAdmin());
   }
-
-
 }

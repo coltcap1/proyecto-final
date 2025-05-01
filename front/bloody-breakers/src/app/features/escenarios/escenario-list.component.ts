@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { EscenarioComponent } from './escenario.component';
 import { EscenariosService } from '../../core/services/escenarios.service';
 import { Escenario } from '../../models/escenario.model';
+import { ScrollSectionDirective } from '../../shared/directives/scroll-section.directive';
 
 @Component({
   selector: 'app-escenario-list',
   standalone: true,
-  imports: [CommonModule, EscenarioComponent],
+  imports: [ScrollSectionDirective,CommonModule, EscenarioComponent],
   templateUrl: './escenario-list.component.html',
   styleUrls: ['./escenario-list.component.scss']
 })

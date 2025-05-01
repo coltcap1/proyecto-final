@@ -1,9 +1,11 @@
 .personajes-container {
-    display: flex;
-    min-height: 100vh;
-    padding: 0 5%;
-    gap: 2rem;
-    box-sizing: border-box;
+  min-height: 200vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 5%;
+  box-sizing: border-box;
     
   }
   
@@ -38,4 +40,3 @@
       }
 
   }
-  

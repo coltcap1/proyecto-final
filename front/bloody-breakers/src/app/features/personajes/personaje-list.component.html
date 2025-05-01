@@ -1,15 +1,15 @@
-<section class="personajes-container">
+<section appScrollSection="/personajes" class="personajes-container">
   <div class="personajes-grid">
     @for (personaje of personajes(); track personaje.id) {
-      @if(personaje.esEnemigo === false){
-      <div class="personaje-card" (click)="seleccionar(personaje)">
-        <img [src]="personaje.iconoUrl" [alt]="personaje.nombre" />
-      </div>
+    @if(personaje.esEnemigo === false){
+    <div class="personaje-card" (click)="seleccionar(personaje)">
+      <img [src]="personaje.iconoUrl" [alt]="personaje.nombre" />
+    </div>
     }
-  }
+    }
   </div>
+  @if (seleccionado()) {
+    <app-personaje [personaje]="seleccionado()!" (cerrar)="cerrarModal()" />
+    }
 </section>
 
-@if (seleccionado()) {
-  <app-personaje [personaje]="seleccionado()!" (cerrar)="cerrarModal()" />
-}

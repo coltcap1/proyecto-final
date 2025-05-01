@@ -6,9 +6,7 @@
   @if (isOpen()) {
   <nav class="menu-items">
     @for (item of visibleMenuItems(); track item.label) {
-
-    <a [href]="item.path" class="menu-link" (click)="toggleMenu()">{{ item.label }}</a>
-
+    <a [routerLink]="item.path" class="menu-link" (click)="toggleMenu()">{{ item.label }}</a>
     }
   </nav>
 

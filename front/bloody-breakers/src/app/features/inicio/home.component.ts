@@ -1,16 +1,26 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../shared/components/menu/menu.component';
+import { ScrollSectionDirective } from '../../shared/directives/scroll-section.directive';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MenuComponent],
+  imports: [ScrollSectionDirective,CommonModule, MenuComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
 
+/*
+Hay codigo innecesario en el cambio de logo, se podria directamente obviar ya que hacer un cambio de route y listo.
+
+HAY UN BUG QUE AL ESTAR AL 100% DE ZOOM, no funciona el cambio.
+*/
+  
+  private router = inject(Router);
   scrollY = signal(0);
   staticLogoVisible = signal(false);
 
@@ -24,7 +34,7 @@ export class HomeComponent {
 
     // Mostrar logo estático solo al final
     if (progreso >= 1) {
-      this.staticLogoVisible.set(true);
+      this.router.navigate(['/mundos']);
     } else {
       this.staticLogoVisible.set(false);
     }
@@ -43,7 +53,7 @@ export class HomeComponent {
   }
 
   scrollToTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0 });
   }
 
   showStaticLogo() {

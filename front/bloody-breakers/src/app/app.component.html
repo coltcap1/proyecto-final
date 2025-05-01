@@ -1,4 +1,4 @@
-<div id="inicio">
+<!-- <div id="inicio">
   <app-home></app-home>
 </div>
 
@@ -46,4 +46,12 @@
   <h1>ADMIN</h1>
 </div>
 }
-}
+} -->
+
+@if (!staticLogoVisible) {
+  <img src="../../../assets/logo_estatico.png" alt="Logo Estático" class="logo-estatico clickable"
+    (click)="goHome()" />
+  }
+
+<app-menu/>
+<router-outlet />

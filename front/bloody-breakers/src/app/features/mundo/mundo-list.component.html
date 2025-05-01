@@ -1,7 +1,5 @@
- <!-- Contenido de mundos aquí -->
- 
-  <section class="mundos-container">
+  <section appScrollSection="/mundos" class="mundos-container">
     @for (mundo of mundos(); track mundo.id) {
-        <app-mundo [mundo]="mundo" />
-      }
+    <app-mundo [mundo]="mundo" />
+    }
   </section>

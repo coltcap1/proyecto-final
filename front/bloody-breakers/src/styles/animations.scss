@@ -1,3 +1,7 @@
+.slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
 @keyframes slideUp {
   from {
     transform: translateY(50px);
@@ -10,10 +14,17 @@
   }
 }
 
-.slide-up {
-  animation: slideUp 0.8s ease-out;
+/* 🔥 Animación slide-up */
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
-
 
 
 @keyframes matrix {
