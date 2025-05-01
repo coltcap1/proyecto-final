@@ -32,8 +32,13 @@
 @if(!isLogged){
 <div id="login">
   <h1>LOGIN</h1>
-  <app-login />
+  <app-login (solicitaRegistro)="activarRegistro()" />
 </div>
+@if (mostrarRegistro()) {
+<div id="registro">
+  <app-register />
+</div>
+}
 }
 @if(isLogged){
 @if(isAdmin){

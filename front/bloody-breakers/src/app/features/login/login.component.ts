@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   private loginService = inject(LoginService);
 
   @Output() loginSuccess = new EventEmitter<void>();
+  @Output() solicitaRegistro = new EventEmitter<void>();
 
   loginForm!: FormGroup;
   errorMessage = '';
@@ -60,5 +61,7 @@ asegurarme que la API devuelva:
     return this.loginForm.get('password');
   }
   
-
+  pedirRegistro() {
+    this.solicitaRegistro.emit();
+  }
 }

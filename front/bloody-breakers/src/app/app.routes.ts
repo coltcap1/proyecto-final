@@ -7,7 +7,6 @@ import { EscenarioListComponent } from './features/escenarios/escenario-list.com
 import { FooterComponent } from './features/footer/footer.component';
 import { LoginComponent } from './features/login/login.component';
 import { DocListComponent } from './features/documentacion/doc-list.component';
-import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +16,6 @@ export const routes: Routes = [
   { path: 'escenarios', component: EscenarioListComponent },
   { path: 'documentacion', component: DocListComponent },
   { path: 'login', component: LoginComponent },
-  // { path: 'admin', canActivate: [authGuard], loadComponent: () => import('./features/admin/admin-panel.component').then(m => m.AdminPanelComponent) },
+  { path: 'admin', loadComponent: () => import('./features/admin/admin-panel.component').then(m => m.AdminPanelComponent) },
   { path: '**', redirectTo: '' }
 ];
