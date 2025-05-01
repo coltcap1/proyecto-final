@@ -1,1 +1,16 @@
-<p>enemigo-list works!</p>
+<section class="personajes-container">
+    <div class="personajes-grid">
+      @for (enemigo of enemigos(); track enemigo.id) {
+        @if(enemigo.esEnemigo === true){
+        <div class="personaje-card" (click)="seleccionar(enemigo)">
+          <img [src]="enemigo.iconoUrl" [alt]="enemigo.nombre" />
+        </div>
+      }
+    }
+    </div>
+  </section>
+  
+  @if (seleccionado()) {
+    <app-enemigo [enemigo]="seleccionado()!" (cerrar)="cerrarModal()" />
+  }
+  

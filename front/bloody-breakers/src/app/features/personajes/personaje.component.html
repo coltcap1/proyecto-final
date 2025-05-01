@@ -1,0 +1,9 @@
+<div class="modal-backdrop" (click)="cerrarModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="cerrarModal()">✖</button>
+      <img [src]="personaje.iconoUrl" alt="Icono grande" />
+      <h2>{{ personaje.nombre }}</h2>
+      <p>{{ personaje.historia }}</p>
+    </div>
+  </div>
+  

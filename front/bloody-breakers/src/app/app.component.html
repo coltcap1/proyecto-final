@@ -1,51 +1,48 @@
 <!-- @if (loginService.isLoggedIn()) {
   <button routerLink="/admin">Ir al panel de administración</button>
 } -->
+<div id="inicio">
+  <app-home></app-home>
+</div>
 
-<app-home></app-home>
+<div id="mundos">
+  <h1>MUNDOS</h1>
+  <app-mundo-list />
+</div>
 
+<div id="personajes">
+  <h1>PERSONAJES</h1>
+  <app-personaje-list />
+</div>
 
+<div id="enemigos">
+  <h1>ENEMIGOS</h1>
+  <app-enemigo-list />
+</div>
 
-@defer (on viewport;prefetch on idle){
-<app-mundo-list />
-}@placeholder {
-<div class="loader">Próximamente mundos...</div>
-}
-@loading{
-<div class="loader">Cargando mundos...</div>
-}
-@error {
-<div class="error-message">
-  Ocurrió un error al cargar los datos. Intenta recargar la página o vuelve más tarde.
+<div id="escenarios">
+  <h1>ESCENARIOS</h1>
+  <app-escenario-list />
+</div>
+
+<div id="documentacion">
+  <h1>DOCUMENTACIÓN</h1>
+</div>
+
+<!-- Borrar cuando se ponga la propiedad en la app -->
+@let isLogged = false;
+@let isAdmin = false;
+
+@if(!isLogged){
+<div id="login">
+  <h1>LOGIN</h1>
+  <app-login/>
 </div>
 }
-
-@defer (on viewport;prefetch on idle){
-<app-personaje-list />
-} @placeholder {
-<div class="loader">Próximamente personajes...</div>
-}
-@loading{
-<div class="loader">Cargando personajes...</div>
-}
-@error {
-<div class="error-message">
-  Ocurrió un error al cargar los datos. Intenta recargar la página o vuelve más tarde.
-</div>
-}
-
-
-
-@defer (on viewport;prefetch on idle){
-<app-escenario-list />
-}@placeholder {
-<div class="loader">Próximamente escenarios...</div>
-}
-@loading{
-<div class="loader">Cargando escenarios...</div>
-}
-@error {
-<div class="error-message">
-  Ocurrió un error al cargar los datos. Intenta recargar la página o vuelve más tarde.
-</div>
+@if(isLogged){
+  @if(isAdmin){
+  <div id="admin">
+    <h1>ADMIN</h1>
+  </div>
+  }
 }

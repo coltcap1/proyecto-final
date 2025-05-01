@@ -1,13 +1,27 @@
-<div class="login-form">
-    <h1>Login Admin</h1>
-  
-    <form (ngSubmit)="onSubmit()">
-      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
-      <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required />
-  
-      <button type="submit">Iniciar sesión</button>
-    </form>
-  
-    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
-  </div>
-  
+<div class="login-container">
+  <h2>Iniciar sesión</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label>
+      Email:
+      <input formControlName="email" />
+    </label>
+    @if (email?.invalid && email?.touched) {
+    <div class="error">Email obligatorio o inválido</div>
+    }
+
+    <label>
+      Contraseña:
+      <input type="password" formControlName="password" />
+    </label>
+    @if (password?.invalid && password?.touched) {
+    <div class="error">Contraseña obligatoria</div>
+    }
+
+    @if (errorMessage) {
+    <div class="error">{{ errorMessage }}</div>
+    }
+
+    <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+  </form>
+</div>

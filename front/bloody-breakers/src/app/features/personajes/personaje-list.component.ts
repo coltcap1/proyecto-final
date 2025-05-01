@@ -1,17 +1,17 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonajesService } from '../../core/services/personajes.service';
 import { Personaje } from '../../models/personaje.model';
+import { PersonajesService } from '../../core/services/personajes.service';
+import { PersonajeComponent } from './personaje.component';
 
 @Component({
   selector: 'app-personaje-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PersonajeComponent],
   templateUrl: './personaje-list.component.html',
   styleUrls: ['./personaje-list.component.scss']
 })
 export class PersonajeListComponent implements OnInit {
-
   personajes = signal<Personaje[]>([]);
   seleccionado = signal<Personaje | null>(null);
 
@@ -26,5 +26,9 @@ export class PersonajeListComponent implements OnInit {
 
   seleccionar(personaje: Personaje) {
     this.seleccionado.set(personaje);
+  }
+
+  cerrarModal() {
+    this.seleccionado.set(null);
   }
 }

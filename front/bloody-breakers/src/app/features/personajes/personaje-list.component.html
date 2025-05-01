@@ -1,25 +1,15 @@
-<h1>Personajes</h1>
 <section class="personajes-container">
-
-    <div class="personajes-grid">
-      @for (personaje of personajes(); track personaje.id) {
-        <div class="personaje-card" (click)="seleccionar(personaje)">
-          <img [src]="personaje.iconoUrl" [alt]="personaje.nombre" />
-        </div>
-      }
-    </div>
-  
-  </section>
-  
-  <!-- Modal -->
-  @if (seleccionado()) {
-    <div class="modal-backdrop" (click)="seleccionado.set(null)">
-      <div class="modal-content" (click)="$event.stopPropagation()">
-        <button class="modal-close" (click)="seleccionado.set(null)">✖</button>
-        <img [src]="seleccionado()!.iconoUrl" alt="Icono grande" />
-        <h2>{{ seleccionado()!.nombre }}</h2>
-        <p>{{ seleccionado()!.historia }}</p>
+  <div class="personajes-grid">
+    @for (personaje of personajes(); track personaje.id) {
+      @if(personaje.esEnemigo === false){
+      <div class="personaje-card" (click)="seleccionar(personaje)">
+        <img [src]="personaje.iconoUrl" [alt]="personaje.nombre" />
       </div>
-    </div>
+    }
   }
-  
+  </div>
+</section>
+
+@if (seleccionado()) {
+  <app-personaje [personaje]="seleccionado()!" (cerrar)="cerrarModal()" />
+}

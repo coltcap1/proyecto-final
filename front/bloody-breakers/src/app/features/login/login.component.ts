@@ -1,43 +1,64 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../../core/services/login.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  private fb = inject(FormBuilder);
+  private loginService = inject(LoginService);
 
-  email: string = '';
-  password: string = '';
-  errorMessage: string = '';
+  @Output() loginSuccess = new EventEmitter<void>();
 
-  constructor(
-    private loginService: LoginService,
-    private router: Router
-  ) {}
+  loginForm!: FormGroup;
+  errorMessage = '';
 
-  onSubmit() {
-    if (!this.email || !this.password) {
-      this.errorMessage = 'Por favor completa todos los campos.';
-      return;
-    }
-
-    this.loginService.login({ email: this.email, password: this.password })
-      .subscribe({
-        next: (response) => {
-          this.loginService.guardarToken(response.token);
-          this.router.navigate(['/admin']);
-        },
-        error: (error) => {
-          this.errorMessage = 'Credenciales incorrectas o error de servidor.';
-          console.error(error);
-        }
-      });
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
   }
+
+/*
+asegurarme que la API devuelva:
+{
+  "token": "jwt...",
+  "role": "ADMIN" // o "USER"
+}
+
+*/
+
+  onSubmit(): void {
+    if (this.loginForm.invalid) return;
+
+    const credentials = this.loginForm.value;
+
+    this.loginService.login(credentials).subscribe({
+      next: (response) => {
+        this.loginService.guardarToken(response.token);
+        sessionStorage.setItem('role', response.role); // guardamos el rol del usuario
+        this.loginSuccess.emit(); // notifica al componente superior
+      },
+      error: () => {
+        this.errorMessage = 'Credenciales inválidas o error de servidor';
+      }
+    });
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+  
+  get password() {
+    return this.loginForm.get('password');
+  }
+  
+
 }

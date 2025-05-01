@@ -4,9 +4,12 @@
   </button>
 
   @if (isOpen()) {
-    <nav class="menu-items">
-      @for (item of menuItems; track item.label) {
-        <a [routerLink]="item.path" class="menu-link" (click)="toggleMenu()">{{ item.label }}</a>
-      }
-    </nav>
+  <nav class="menu-items">
+    @for (item of visibleMenuItems(); track item.label) {
+
+    <a [href]="item.path" class="menu-link" (click)="toggleMenu()">{{ item.label }}</a>
+
+    }
+  </nav>
+
   }
