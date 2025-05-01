@@ -1,12 +1,12 @@
-import { Component, computed, inject, Signal, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { MenuComponent } from './shared/components/menu/menu.component';
+import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent],
+  imports: [RouterOutlet, DashboardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

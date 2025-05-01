@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Personaje } from '../../models/personaje.model';
 import { PersonajesService } from '../../core/services/personajes.service';
 import { EnemigoComponent } from './enemigo.component';
-import { ScrollSectionDirective } from '../../shared/directives/scroll-section.directive';
 
 @Component({
   selector: 'app-enemigo-list',
   standalone: true,
-  imports: [ScrollSectionDirective, CommonModule, EnemigoComponent],
+  imports: [CommonModule, EnemigoComponent],
   templateUrl: './enemigo-list.component.html',
   styleUrls: ['./enemigo-list.component.scss']
 })

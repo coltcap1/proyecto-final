@@ -1,0 +1,22 @@
+<div class="dashboard-bar ">
+    <button (click)="navegar('/')">INICIO</button>
+    <button (click)="navegar('/mundos')">MUNDOS</button>
+    <button (click)="navegar('/personajes')">PERSONAJES</button>
+    <button (click)="navegar('/enemigos')">ENEMIGOS</button>
+    <button (click)="navegar('/escenarios')">ESCENARIOS</button>
+    
+      
+    @if (!isLoggedIn()) {
+      <button (click)="navegar('/login')">LOGIN</button>
+      <button (click)="navegar('/register')">REGISTRO</button>
+    }
+  
+    @if (isAdmin()) {
+      <button (click)="navegar('/admin')">ADMIN</button>
+    }
+    
+    <button (click)="navegar('/documentacion')">DOCUMENTACIÓN</button>
+
+  
+  </div>
+  

@@ -1,13 +1,3 @@
-<section appScrollSection="/" class="home-section">
-  <!-- GIF principal siempre presente -->
-  <img src="../../../assets/glitch.gif" alt="GIF dinámico" class="gif-principal"
-    [style.transform]="calcularTransformacion()" [class.fade-out]="showStaticLogo()"
-    [class.fade-in]="!showStaticLogo()" />
-
-  <!-- Logo estático solo si corresponde -->
-  @if (showStaticLogo()) {
-  <img src="../../../assets/logo_estatico.png" alt="Logo Estático" class="logo-estatico clickable"
-    (click)="scrollToTop()" />
-  }
-
+<section class="home-section">
+  <img src="../../../assets/glitch.gif" alt="GIF dinámico" class="gif-principal"/>
 </section>

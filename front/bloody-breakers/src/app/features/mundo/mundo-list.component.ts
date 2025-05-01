@@ -4,12 +4,11 @@ import { MundoComponent } from './mundo.component';
 import { MundosService } from '../../core/services/mundos.service';
 import { Mundo } from '../../models/mundo.model';
 import { signal } from '@angular/core';
-import { ScrollSectionDirective } from '../../shared/directives/scroll-section.directive';
 
 @Component({
   selector: 'app-mundo-list',
   standalone: true,
-  imports: [CommonModule, MundoComponent, ScrollSectionDirective],
+  imports: [CommonModule, MundoComponent],
   templateUrl: './mundo-list.component.html',
   styleUrls: ['./mundo-list.component.scss']
 })

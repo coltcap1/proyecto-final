@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Personaje } from '../../models/personaje.model';
 import { PersonajesService } from '../../core/services/personajes.service';
 import { PersonajeComponent } from './personaje.component';
-import { ScrollSectionDirective } from '../../shared/directives/scroll-section.directive';
 
 @Component({
   selector: 'app-personaje-list',
   standalone: true,
-  imports: [ScrollSectionDirective,CommonModule, PersonajeComponent],
+  imports: [CommonModule, PersonajeComponent],
   templateUrl: './personaje-list.component.html',
   styleUrls: ['./personaje-list.component.scss']
 })

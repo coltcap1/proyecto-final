@@ -4,7 +4,6 @@ import { MundoListComponent } from './features/mundo/mundo-list.component';
 import { PersonajeListComponent } from './features/personajes/personaje-list.component';
 import { EnemigoListComponent } from './features/enemigos/enemigo-list.component';
 import { EscenarioListComponent } from './features/escenarios/escenario-list.component';
-import { FooterComponent } from './features/footer/footer.component';
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { DocListComponent } from './features/documentacion/doc-list.component';
