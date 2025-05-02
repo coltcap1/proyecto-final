@@ -1,10 +1,57 @@
-<h1>Panel de Administración</h1>
+<div class="container my-5">
+  <h1 class="mb-4">Panel de Administración</h1>
 
-<button (click)="logout()">Cerrar sesión</button>
+  <button class="btn btn-outline-danger mb-4" (click)="logout()">Cerrar sesión</button>
 
-<div class="admin-section">
-  <a routerLink="/admin/mundos">Gestionar Mundos</a>
-  <a routerLink="/admin/personajes">Gestionar Personajes</a>
-  <a routerLink="/admin/escenarios">Gestionar Escenarios</a>
-  <a routerLink="/admin/imagenes">Gestionar Imágenes</a>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Mundos</h5>
+          <a routerLink="/admin/mundos" class="btn btn-primary w-100">Gestionar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Personajes</h5>
+          <a routerLink="/admin/personajes" class="btn btn-primary w-100">Gestionar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Escenarios</h5>
+          <a routerLink="/admin/escenarios" class="btn btn-primary w-100">Gestionar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Imágenes</h5>
+          <a routerLink="/admin/imagenes" class="btn btn-primary w-100">Gestionar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NUEVA SECCIÓN: CRUD genérico -->
+    <div class="col">
+      <div class="card h-100 border-success">
+        <div class="card-body">
+          <h5 class="card-title text-success">Operaciones CRUD</h5>
+          <div class="d-grid gap-2">
+            <a routerLink="/crear" class="btn btn-success">➕ Crear</a>
+            <a routerLink="/editar" class="btn btn-warning">✏️ Editar</a>
+            <a routerLink="/eliminar" class="btn btn-danger">🗑️ Eliminar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

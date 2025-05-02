@@ -1,0 +1,39 @@
+<div class="container my-4">
+    <h4>Formulario dinámico</h4>
+  
+    @if (error()) {
+      <div class="alert alert-danger">{{ error() }}</div>
+    }
+  
+    <form (submit)="guardar(); $event.preventDefault()">
+      @for (key of Object.keys(modeloBase); track key) {
+        @if (key !== 'id' && key !== 'imagenes') {
+          <div class="mb-3">
+            <label class="form-label text-capitalize">{{ key }}</label>
+  
+            @if (typeof modeloBase[key] === 'boolean') {
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input"
+                       [checked]="datos()[key]"
+                       (change)="actualizarCampo(key, $any($event.target).checked)" />
+                <label class="form-check-label">¿Activado?</label>
+              </div>
+            } @else if (typeof modeloBase[key] === 'number') {
+              <input type="number" class="form-control"
+                     [value]="datos()[key]"
+                     (input)="actualizarCampo(key, $any($event.target).valueAsNumber)"
+                     required />
+            } @else {
+              <input type="text" class="form-control"
+                     [value]="datos()[key]"
+                     (input)="actualizarCampo(key, $any($event.target).value)"
+                     required />
+            }
+          </div>
+        }
+      }
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!camposValidos()">Guardar</button>
+    </form>
+  </div>
+  

@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.scss'
 })
 export class AdminPanelComponent {
 
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   logout() {
     sessionStorage.removeItem('jwt');
