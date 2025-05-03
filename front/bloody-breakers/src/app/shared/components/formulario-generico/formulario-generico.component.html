@@ -1,0 +1,50 @@
+<div class="container my-4">
+  <h4>Formulario dinámico</h4>
+
+  <!-- Muestra un mensaje de error si existe -->
+  @if (error()) {
+  <div class="alert alert-danger">{{ error() }}</div>
+  }
+
+  <!-- Formulario generado dinámicamente -->
+  <form (submit)="guardar(); $event.preventDefault()">
+    <!-- Recorre todas las claves del modelo base -->
+    @for (key of clavesModelo; track key) {
+    <!-- Solo muestra campos que no sean 'id' ni 'imagenes' -->
+    @if (key !== 'id' && key !== 'imagenes') {
+    <div class="mb-3">
+      <!-- Muestra el nombre del campo -->
+      <label class="form-label text-capitalize">{{ key }}</label>
+
+      <!-- Campo booleano → checkbox -->
+      @if (typeof modeloBase[key] === 'boolean') {
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" [checked]="datos()[key]"
+          (change)="actualizarCampo(key, $any($event.target).checked)" />
+        <label class="form-check-label">¿Activado?</label>
+      </div>
+
+      <!-- Campo numérico → input number -->
+      } @else if (typeof modeloBase[key] === 'number') {
+      <input type="number" class="form-control" [value]="datos()[key]"
+        (input)="actualizarCampo(key, $any($event.target).valueAsNumber)" required />
+
+      <!-- Campo texto → input text -->
+      } @else {
+      <input type="text" class="form-control" [value]="datos()[key]"
+        (input)="actualizarCampo(key, $any($event.target).value)" required />
+      }
+      <!-- Previsualización para URLs válidas -->
+      @if (obtenerPrevisualizacion(key)) {
+      <img [src]="obtenerPrevisualizacion(key)!" alt="Previsualización" class="img-thumbnail mt-2"
+        style="max-height: 200px;" />
+      }
+
+    </div>
+    }
+    }
+
+    <!-- Botón de guardar desactivado si faltan campos -->
+    <button type="submit" class="btn btn-primary" [disabled]="!camposValidos()">Guardar</button>
+  </form>
+</div>

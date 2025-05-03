@@ -8,29 +8,29 @@ import { Observable, of } from 'rxjs';
 })
 export class EscenariosService {
 
-  // private apiUrl = 'http://localhost:3000/escenarios';
+  private apiUrl = 'http://localhost:3000/escenarios';
 
-  // private http = inject(HttpClient);
+  private http = inject(HttpClient);
 
-  // getAll(): Observable<Escenario[]> {
-  //   return this.http.get<Escenario[]>(this.apiUrl);
-  // }
+  getAll(): Observable<Escenario[]> {
+    return this.http.get<Escenario[]>(this.apiUrl);
+  }
 
-  // getById(id: number): Observable<Escenario> {
-  //   return this.http.get<Escenario>(`${this.apiUrl}/${id}`);
-  // }
+  getById(id: number): Observable<Escenario> {
+    return this.http.get<Escenario>(`${this.apiUrl}/${id}`);
+  }
 
-  // create(escenario: Escenario): Observable<Escenario> {
-  //   return this.http.post<Escenario>(this.apiUrl, escenario);
-  // }
+  create(escenario: Escenario): Observable<Escenario> {
+    return this.http.post<Escenario>(this.apiUrl, escenario);
+  }
 
-  // update(id: number, escenario: Escenario): Observable<Escenario> {
-  //   return this.http.put<Escenario>(`${this.apiUrl}/${id}`, escenario);
-  // }
+  update(id: number, escenario: Escenario): Observable<Escenario> {
+    return this.http.put<Escenario>(`${this.apiUrl}/${id}`, escenario);
+  }
 
-  // delete(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  // }
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 
   getMockEscenarios(): Observable<Escenario[]> {
     const mock: Escenario[] = [

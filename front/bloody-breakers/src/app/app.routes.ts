@@ -9,12 +9,12 @@ import { RegisterComponent } from './features/register/register.component';
 import { DocListComponent } from './features/documentacion/doc-list.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'mundos', component: MundoListComponent },
-  { path: 'personajes', component: PersonajeListComponent },
-  { path: 'enemigos', component: EnemigoListComponent },
-  { path: 'escenarios', component: EscenarioListComponent },
-  { path: 'documentacion', component: DocListComponent },
+  { path: '', pathMatch: 'full', component: HomeComponent },
+  { path: 'mundos', pathMatch: 'full', component: MundoListComponent },
+  { path: 'personajes', pathMatch: 'full', component: PersonajeListComponent },
+  { path: 'enemigos', pathMatch: 'full', component: EnemigoListComponent },
+  { path: 'escenarios', pathMatch: 'full', component: EscenarioListComponent },
+  { path: 'documentacion', pathMatch: 'full', component: DocListComponent },
 
   // 👇 Rutas separadas para login y registro
   { path: 'login', component: LoginComponent },
@@ -26,6 +26,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/admin/admin-panel.component').then(m => m.AdminPanelComponent)
   },
+  // {
+  //   path: 'admin/:entidad/crear',
+  //   loadComponent: () => import('./features/admin/crear/crear.component').then(m => m.CrearComponent)
+  // },
+  // {
+  //   path: 'admin/imagenes/crear',
+  //   loadComponent: () => import('./features/admin/crear-imagen/crear-imagen.component').then(m => m.CrearImagenComponent)
+  // },
 
   { path: '**', redirectTo: '' }
 ];

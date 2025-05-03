@@ -8,29 +8,29 @@ import { Observable, of } from 'rxjs';
 })
 export class PersonajesService {
 
-  // private apiUrl = 'http://localhost:3000/personajes';
+  private apiUrl = 'http://localhost:3000/personajes';
 
-  // private http = inject(HttpClient);
+  private http = inject(HttpClient);
 
-  // getAll(): Observable<Personaje[]> {
-  //   return this.http.get<Personaje[]>(this.apiUrl);
-  // }
+  getAll(): Observable<Personaje[]> {
+    return this.http.get<Personaje[]>(this.apiUrl);
+  }
 
-  // getById(id: number): Observable<Personaje> {
-  //   return this.http.get<Personaje>(`${this.apiUrl}/${id}`);
-  // }
+  getById(id: number): Observable<Personaje> {
+    return this.http.get<Personaje>(`${this.apiUrl}/${id}`);
+  }
 
-  // create(personaje: Personaje): Observable<Personaje> {
-  //   return this.http.post<Personaje>(this.apiUrl, personaje);
-  // }
+  create(personaje: Personaje): Observable<Personaje> {
+    return this.http.post<Personaje>(this.apiUrl, personaje);
+  }
 
-  // update(id: number, personaje: Personaje): Observable<Personaje> {
-  //   return this.http.put<Personaje>(`${this.apiUrl}/${id}`, personaje);
-  // }
+  update(id: number, personaje: Personaje): Observable<Personaje> {
+    return this.http.put<Personaje>(`${this.apiUrl}/${id}`, personaje);
+  }
 
-  // delete(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  // }
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 
   getMockPersonajes(): Observable<Personaje[]> {
     const mock: Personaje[] = [
@@ -41,6 +41,7 @@ export class PersonajesService {
         historia: 'Un luchador legendario que protege el Mundo de las Sombras.',
         iconoUrl: 'https://i.imgur.com/3ZzXnOB.jpeg',
         mundo: 'Mundo de las Sombras',
+        habilidades: [],
         imagenes: [
           {
             id: 101,
@@ -60,6 +61,7 @@ export class PersonajesService {
         historia: 'Controla el flujo del tiempo y guarda los secretos del bosque.',
         iconoUrl: 'https://i.imgur.com/yefChhv.jpeg',
         mundo: 'Mundo del Tiempo',
+        habilidades: [],
         imagenes: []
       },
       {
@@ -69,6 +71,8 @@ export class PersonajesService {
         historia: 'Un enemigo colosal surgido de los sueños más oscuros.',
         iconoUrl: 'https://i.imgur.com/r0V1Zlv.png',
         mundo: 'Mundo de los Sueños',
+        habilidades: [],
+
         imagenes: [
           {
             id: 103,
