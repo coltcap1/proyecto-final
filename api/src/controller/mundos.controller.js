@@ -64,6 +64,15 @@ const deleteMundo = async (req, res) => {
         const mundo = await Mundo.findByPk(id);
         if (!mundo) return res.status(404).send("Mundo no encontrado");
 
+        // Eliminar imágenes relacionadas (tipo_entidad = 'mundo')
+        //Lo hacemos de está forma porque al ser una entidad polimorfica, es mas facil asegurarse de esta manera a que lo haga el ORM
+        await Imagen.destroy({
+            where: {
+                id_entidad: id,
+                tipo_entidad: 'MUNDO'
+            }
+        });
+
         await mundo.destroy();
         return res.status(200).json({ message: "Mundo eliminado correctamente" }); // No Content
     } catch (error) {

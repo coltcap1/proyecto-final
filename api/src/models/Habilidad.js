@@ -16,7 +16,4 @@ const Habilidad = sequelize.define("HABILIDADES", {
 });
 
 
-console.log("Habilidades: ", Habilidad);
-
-
 module.exports = Habilidad;

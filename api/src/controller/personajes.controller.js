@@ -107,6 +107,15 @@ const deletePersonaje = async (req, res) => {
             return res.status(404).json({ error: "Personaje no encontrado" });
         }
 
+        // Eliminar imágenes relacionadas (tipo_entidad = 'PERSONAJE')
+        //Lo hacemos de está forma porque al ser una entidad polimorfica, es mas facil asegurarse de esta manera a que lo haga el ORM
+        await Imagen.destroy({
+            where: {
+                id_entidad: id,
+                tipo_entidad: 'PERSONAJE'
+            }
+        });
+
         await personaje.destroy();
         return res.status(200).json({ message: "Personaje eliminado correctamente" });
     } catch (error) {

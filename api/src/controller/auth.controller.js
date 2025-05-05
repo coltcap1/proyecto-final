@@ -10,12 +10,12 @@ const register = async (req, res) => {
         //Verificar que el usuario no exista
         const userExist = await Usuario.findOne({ where: { email } });
         if (userExist) return res.status(400).json({ message: "El usuario ya existe" });
-
+        
         //Encriptar la contraseña
         const hashedPassword = await bcrypt.hash(password, 10);
 
         //Crea el usuario (puedes ajustar el rol por defecto)
-        const newUser = await Usuario.create({ email, password: hashedPassword, id_rol: 3 }); //El rol 3 es uno ficticio de jugador
+        const newUser = await Usuario.create({ email, contrasena: hashedPassword, rol_id: 3 }); //El rol 3 es uno ficticio de jugador
 
         res.status(201).json({ message: "Usuario creado con éxito" });
     } catch (error) {
@@ -29,13 +29,13 @@ const login = async (req, res) => {
         const usuario = await Usuario.findOne({ where: { email } });
         if (!usuario) return res.status(404).json({ message: "Ha habido un error en el usuario o en la contraseña" });
 
-        const validPassword = await bcrypt.compare(password, usuario.password);
+        const validPassword = await bcrypt.compare(password, usuario.contrasena);
         if (!validPassword) return res.status(401).json({ message: "Ha habido un error en el usuario o en la contraseña" })
 
         const token = jwt.sign({
             id: usuario.id,
             email: usuario.email,
-            rol: usuario.id_rol
+            rol: usuario.rol_id
         },
             SECRET,
             { expiresIn: "6h" }

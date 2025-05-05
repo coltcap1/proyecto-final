@@ -7,12 +7,14 @@ const mundosRouter = require("./mundos.router");
 const habilidadesRouter = require("./habilidades.router");
 const escenariosRouter = require("./escenarios.router");
 const imagenesRouter = require("./imagenes.router");
+const authRouter = require("./auth.router");
 
 // Asociación de rutas base
 router.use("/personajes", personajesRouter);
 router.use("/mundos", mundosRouter);
 router.use("/habilidades", habilidadesRouter);
 router.use("/escenarios", escenariosRouter);
-router.use("/imagenes", imagenesRouter)
+router.use("/imagenes", imagenesRouter);
+router.use("/auth", authRouter);
 
 module.exports = router;

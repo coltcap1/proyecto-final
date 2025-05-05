@@ -7,7 +7,7 @@ const Rol = sequelize.define("ROLES", {
         primaryKey: true,
         autoIncrement: true
     },
-    nombre: DataTypes.STRING
+    rol: DataTypes.STRING
 }, {
     tableName: "ROLES",
     timestamps: false

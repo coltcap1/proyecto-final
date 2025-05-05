@@ -92,7 +92,7 @@ Habilidad.associate = () => {
 // Personaje -> Mundo
 
 // Usuario -> Rol
-Usuario.belongsTo(Rol, { foreignKey: "id_rol", as: "rol" });
+Usuario.belongsTo(Rol, { foreignKey: "rol_id", as: "rol" });
 
 // Registrar asociaciones ejecutando las funciones
 Personaje.associate();

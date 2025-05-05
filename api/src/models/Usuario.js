@@ -9,7 +9,7 @@ const Usuario = sequelize.define("USUARIOS", {
     },
     contrasena: DataTypes.STRING,
     email: DataTypes.STRING,
-    id_rol: DataTypes.INTEGER
+    rol_id: DataTypes.INTEGER
 }, {
     tableName: 'USUARIOS',
     timestamps: false

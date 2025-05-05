@@ -18,6 +18,5 @@ const Mundo = sequelize.define("MUNDOS", {
 });
 
 
-console.log("Mundo: ", Mundo);
 
 module.exports = Mundo;

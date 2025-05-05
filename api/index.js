@@ -10,11 +10,11 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send("API de Express funcionando correctamente!");
+    res.send("API Express funcionando correctamente!");
 });
 
 app.use("/api", mainRouter); // prefijo general opcional, ej: /api/personajes
 
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
+app.listen(PORT);

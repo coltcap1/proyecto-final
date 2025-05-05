@@ -97,6 +97,15 @@ const deleteEscenario = async (req, res) => {
         const escenario = await Escenario.findByPk(id);
         if (!escenario) return res.status(404).send("Escenario no encontrado");
 
+        // Eliminar imágenes relacionadas (tipo_entidad = 'ESCENARIO')
+        //Lo hacemos de está forma porque al ser una entidad polimorfica, es mas facil asegurarse de esta manera a que lo haga el ORM
+        await Imagen.destroy({
+            where: {
+                id_entidad: id,
+                tipo_entidad: 'ESCENARIO'
+            }
+        });
+
         await escenario.destroy();
         return res.status(204).send();
     } catch (error) {

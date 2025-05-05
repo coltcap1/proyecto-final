@@ -90,6 +90,15 @@ const deleteHabilidad = async (req, res) => {
         const habilidad = await Habilidad.findByPk(id);
         if (!habilidad) return res.status(404).send("Habilidad no encontrada");
 
+        // Eliminar imágenes relacionadas (tipo_entidad = 'HABILIDAD')
+        //Lo hacemos de está forma porque al ser una entidad polimorfica, es mas facil asegurarse de esta manera a que lo haga el ORM
+        await Imagen.destroy({
+            where: {
+                id_entidad: id,
+                tipo_entidad: 'HABILIDAD'
+            }
+        });
+
         await habilidad.destroy();
         return res.sendStatus(204); // No Content
     } catch (error) {
