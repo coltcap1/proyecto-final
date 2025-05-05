@@ -3,12 +3,12 @@
     <h2>Crear nueva entidad</h2>
   
     <!-- Si el modelo y el servicio están definidos, se renderiza el formulario dinámico -->
-    <!-- @if (modeloBase && servicio) {
+    @if (modeloBase && servicio) {
       <app-formulario-generico [modeloBase]="modeloBase" [servicio]="servicio" />
     } 
-    @else { -->
+    @else {
       <!-- Si algo falla, se muestra un mensaje de error -->
       <div class="alert alert-danger">No se pudo cargar el formulario.</div>
-    <!-- } -->
+    }
   </div>
   
