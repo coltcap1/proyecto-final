@@ -7,7 +7,7 @@ export class RegisterService {
   private http = inject(HttpClient);
 
   // 🔁 Reemplazá esta URL con la de tu backend real
-  private apiUrl = 'https://TU-BACKEND.com/api/register';
+  private apiUrl = 'https://proyecto-final-wzmt.onrender.com/api/auth/register';
 
   /**
    * Envía los datos de registro al backend

@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Personaje } from '../../models/personaje.model';
 import { Observable, of } from 'rxjs';
+import { genericServiceInterface } from '../../models/genericService.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonajesService {
+export class PersonajesService implements genericServiceInterface<Personaje>{
 
-  private apiUrl = 'http://localhost:3000/personajes';
+  private apiUrl = 'https://proyecto-final-wzmt.onrender.com/api/personajes';
 
   private http = inject(HttpClient);
 
@@ -31,63 +32,4 @@ export class PersonajesService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-
-  getMockPersonajes(): Observable<Personaje[]> {
-    const mock: Personaje[] = [
-      {
-        id: 1,
-        nombre: 'Kael el Guerrero',
-        esEnemigo: false,
-        historia: 'Un luchador legendario que protege el Mundo de las Sombras.',
-        iconoUrl: 'https://i.imgur.com/3ZzXnOB.jpeg',
-        mundo: 'Mundo de las Sombras',
-        habilidades: [],
-        imagenes: [
-          {
-            id: 101,
-            url: 'https://i.imgur.com/5CKCzr6.jpeg',
-            tipoEntidad: 'PERSONAJE',
-            nombreEntidad: 'Kael el Guerrero',
-            nombre: 'Retrato oficial',
-            fechaSubida: new Date().toISOString(),
-            descripcion: 'Kael con su armadura ceremonial.'
-          }
-        ]
-      },
-      {
-        id: 2,
-        nombre: 'Mira la Hechicera',
-        esEnemigo: false,
-        historia: 'Controla el flujo del tiempo y guarda los secretos del bosque.',
-        iconoUrl: 'https://i.imgur.com/yefChhv.jpeg',
-        mundo: 'Mundo del Tiempo',
-        habilidades: [],
-        imagenes: []
-      },
-      {
-        id: 3,
-        nombre: 'Zarok el Devastador',
-        esEnemigo: true,
-        historia: 'Un enemigo colosal surgido de los sueños más oscuros.',
-        iconoUrl: 'https://i.imgur.com/r0V1Zlv.png',
-        mundo: 'Mundo de los Sueños',
-        habilidades: [],
-
-        imagenes: [
-          {
-            id: 103,
-            url: 'https://i.imgur.com/RTdltp5.jpeg',
-            tipoEntidad: 'PERSONAJE',
-            nombreEntidad: 'Zarok el Devastador',
-            nombre: 'Amenaza en la niebla',
-            fechaSubida: new Date().toISOString(),
-            descripcion: 'Zarok emergiendo entre las sombras.'
-          }
-        ]
-      }
-    ];
-
-    return of(mock);
-  }
-
 }

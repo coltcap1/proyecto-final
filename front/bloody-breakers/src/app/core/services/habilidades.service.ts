@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Habilidad } from '../../models/habilidad.model';
 import { Observable } from 'rxjs';
+import { genericServiceInterface } from '../../models/genericService.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HabilidadesService {
+export class HabilidadesService implements genericServiceInterface<Habilidad>{
 
-  private apiUrl = 'http://localhost:3000/habilidades';
+  private apiUrl = 'https://proyecto-final-wzmt.onrender.com/api/habilidades';
 
   private http = inject(HttpClient);
 

@@ -15,6 +15,11 @@
       <button (click)="navegar('/admin')">ADMIN</button>
     }
     
+    @if(isLoggedIn()){
+      <button (click)="navegar('/login')">GALERIA</button>
+
+    }
+
     <button (click)="navegar('/documentacion')">DOCUMENTACIÓN</button>
 
   

@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Imagen } from '../../models/imagen.model';
 import { Observable } from 'rxjs';
+import { genericServiceInterface } from '../../models/genericService.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ImagenesService {
+export class ImagenesService implements genericServiceInterface<Imagen>{
 
-  private apiUrl = 'http://localhost:3000/imagenes';
+  private apiUrl = 'https://proyecto-final-wzmt.onrender.com/api/imagenes';
 
   private http = inject(HttpClient);
 

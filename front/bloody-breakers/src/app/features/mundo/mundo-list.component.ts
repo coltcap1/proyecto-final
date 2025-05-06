@@ -19,7 +19,7 @@ export class MundoListComponent implements OnInit {
   private mundosService = inject(MundosService);
 
   ngOnInit(): void {
-    this.mundosService.getMockMundos().subscribe({
+    this.mundosService.getAll().subscribe({
       next: (data) => this.mundos.set(data),
       error: (err) => console.error('Error al cargar mundos:', err)
     });

@@ -80,7 +80,7 @@ Habilidad.associate = () => {
     },
     as: 'IMAGENES'
   });
-
+  
   Habilidad.belongsToMany(Personaje, {
     through: PersonajeHabilidad,
     foreignKey: 'id_habilidad',

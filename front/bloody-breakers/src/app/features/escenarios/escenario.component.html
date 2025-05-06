@@ -1,16 +1,16 @@
-<div class="escenario-container" [class.with-image]="escenario.imagenes.length > 0">
+<div class="escenario-container" [class.with-image]="escenario.IMAGENES.length > 0">
 
-  @if (escenario.imagenes.length > 0) {
+  @if (escenario.IMAGENES.length > 0) {
   <div class="escenario-image">
-    <img [src]="escenario.imagenes[0].url" alt="Imagen del escenario" />
+    <img [src]="escenario.IMAGENES[0].url" alt="Imagen del escenario" />
   </div>
   }
 
   <div class="escenario-content">
     <h1>{{ escenario.nombre }}</h1>
-    <h3>{{ escenario.mundo }}</h3>
-    @if (escenario.imagenes.length > 0){
-    <p>{{ escenario.imagenes[0].descripcion }}</p>
+    <h3>{{ escenario.MUNDOS.nombre }}</h3>
+    @if (escenario.IMAGENES.length > 0){
+    <p>{{ escenario.IMAGENES[0].descripcion }}</p>
     }
   </div>
 

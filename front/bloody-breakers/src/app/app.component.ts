@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
-import { AdminPanelComponent } from './features/admin/admin-panel.component';
+import { AdminPanelComponent } from './features/admin/adminpanel/admin-panel.component';
 
 @Component({
   selector: 'app-root',
@@ -16,20 +16,8 @@ export class AppComponent {
 
   private router = inject(Router);
 
-  staticLogoVisible = true;
-
   isLoggedIn = signal(this.checkLogged());
   isAdmin = signal(this.checkAdmin());
-
-  constructor() {
-    // ⬇️ Scroll automático al top al cambiar de ruta
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event:NavigationEnd) => {
-        window.scrollTo({ top: 0, behavior: 'auto' });
-        this.staticLogoVisible = event.urlAfterRedirects === '/';
-      });
-  }
 
   private checkLogged(): boolean {
     return !!sessionStorage.getItem('jwt');

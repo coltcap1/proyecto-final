@@ -15,7 +15,7 @@ export class DashboardComponent {
   private role = signal(sessionStorage.getItem('role'));
 
   isLoggedIn = computed(() => !!this.jwt());
-  isAdmin = computed(() => this.role() === 'ADMIN');
+  isAdmin = computed(() => this.role() === '1');
 
   navegar(ruta: string): void {
     this.router.navigate([ruta]);

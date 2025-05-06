@@ -1,24 +1,24 @@
-import { Component, inject, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../../core/services/login.service';
+import { Router, RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
   private loginService = inject(LoginService);
-
-  @Output() loginSuccess = new EventEmitter<void>();
-  @Output() solicitaRegistro = new EventEmitter<void>();
+  private router = inject(Router);
+  private toastr = inject(ToastrService);
 
   loginForm!: FormGroup;
-  errorMessage = '';
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -27,28 +27,21 @@ export class LoginComponent implements OnInit {
     });
   }
 
-/*
-asegurarme que la API devuelva:
-{
-  "token": "jwt...",
-  "role": "ADMIN" // o "USER"
-}
-
-*/
+  errorMessage = '';
 
   onSubmit(): void {
     if (this.loginForm.invalid) return;
-
-    const credentials = this.loginForm.value;
-
-    this.loginService.login(credentials).subscribe({
+  
+    this.loginService.login(this.loginForm.value).subscribe({
       next: (response) => {
-        this.loginService.guardarToken(response.token);
-        sessionStorage.setItem('role', response.role); // guardamos el rol del usuario
-        this.loginSuccess.emit(); // notifica al componente superior
+        console.log('Rol recibido:', response.rol); // 👈 debug
+        this.loginService.guardarCredenciales(response.token, response.rol);
+        this.toastr.success('Sesión iniciada correctamente');
+        this.router.navigate(['/']);
       },
       error: () => {
-        this.errorMessage = 'Credenciales inválidas o error de servidor';
+        this.toastr.error('Credenciales inválidas o error de servidor');
+        this.errorMessage = '';
       }
     });
   }
@@ -56,12 +49,8 @@ asegurarme que la API devuelva:
   get email() {
     return this.loginForm.get('email');
   }
-  
+
   get password() {
     return this.loginForm.get('password');
-  }
-  
-  pedirRegistro() {
-    this.solicitaRegistro.emit();
   }
 }

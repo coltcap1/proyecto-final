@@ -18,7 +18,7 @@ export class EscenarioListComponent implements OnInit {
   private escenariosService = inject(EscenariosService);
 
   ngOnInit(): void {
-    this.escenariosService.getMockEscenarios().subscribe({
+    this.escenariosService.getAll().subscribe({
       next: (data) => this.escenarios.set(data),
       error: (err) => console.error('Error al cargar escenarios:', err)
     });

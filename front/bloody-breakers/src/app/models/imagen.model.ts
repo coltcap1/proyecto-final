@@ -1,10 +1,8 @@
 export interface Imagen {
-    id: number;
-    url: string;
-    tipoEntidad: 'MUNDO' | 'ESCENARIO' | 'PERSONAJE' | 'HABILIDAD' | 'EXTRAS';
-    nombreEntidad: string;
-    nombre: string;
-    fechaSubida: string;
-    descripcion: string;
-  }
-  
+  id: number;
+  tipoEntidad: 'MUNDO' | 'ESCENARIO' | 'PERSONAJE' | 'HABILIDAD' | 'EXTRAS';
+  idEntidad: number;
+  nombre: string;
+  url: string;
+  descripcion: string | null;
+}

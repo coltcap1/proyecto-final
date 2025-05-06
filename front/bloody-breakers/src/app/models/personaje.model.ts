@@ -7,7 +7,7 @@ export interface Personaje {
   esEnemigo: boolean;
   historia: string;
   iconoUrl: string;
-  mundo: string;
-  habilidades: Habilidad[];
-  imagenes: Imagen[]; // Lista de imágenes asociadas al personaje
+  id_mundo: number;
+  IMAGENES: Imagen[]; // Lista de imágenes asociadas al personaje
+  HABILIDADES: Habilidad[];
 }

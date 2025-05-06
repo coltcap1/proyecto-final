@@ -7,6 +7,8 @@ import { EscenarioListComponent } from './features/escenarios/escenario-list.com
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { DocListComponent } from './features/documentacion/doc-list.component';
+import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -22,18 +24,10 @@ export const routes: Routes = [
 
   // ⚠️ Admin cargado solo si es necesario (puede agregarse guard luego)
   {
-    path: 'admin',
+    path: 'admin', canActivate: [authGuard, adminGuard],
     loadComponent: () =>
-      import('./features/admin/admin-panel.component').then(m => m.AdminPanelComponent)
+      import('./features/admin/adminpanel/admin-panel.component').then(m => m.AdminPanelComponent)
   },
-  // {
-  //   path: 'admin/:entidad/crear',
-  //   loadComponent: () => import('./features/admin/crear/crear.component').then(m => m.CrearComponent)
-  // },
-  // {
-  //   path: 'admin/imagenes/crear',
-  //   loadComponent: () => import('./features/admin/crear-imagen/crear-imagen.component').then(m => m.CrearImagenComponent)
-  // },
 
   { path: '**', redirectTo: '' }
 ];

@@ -18,7 +18,7 @@ export class EnemigoListComponent implements OnInit {
   private personajesService = inject(PersonajesService);
 
   ngOnInit(): void {
-    this.personajesService.getMockPersonajes().subscribe({
+    this.personajesService.getAll().subscribe({
       next: (data) => this.enemigos.set(data),
       error: (err) => console.error('Error al cargar personajes:', err)
     });

@@ -10,7 +10,7 @@ const register = async (req, res) => {
         //Verificar que el usuario no exista
         const userExist = await Usuario.findOne({ where: { email } });
         if (userExist) return res.status(400).json({ message: "El usuario ya existe" });
-        
+
         //Encriptar la contraseña
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -41,7 +41,7 @@ const login = async (req, res) => {
             { expiresIn: "6h" }
         );
 
-        res.json({ token })
+        res.json({ token, rol: usuario.rol_id })
 
     } catch (error) {
         res.status(500).json({ message: "Error al iniciar sesión", error });

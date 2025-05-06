@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Mundo } from '../../models/mundo.model';
 import { Observable, of } from 'rxjs';
+import { genericServiceInterface } from '../../models/genericService.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MundosService {
+export class MundosService implements genericServiceInterface<Mundo>{
 
-  private apiUrl = 'http://localhost:3000/mundos'; 
+  private apiUrl = 'https://proyecto-final-wzmt.onrender.com/api/mundos'; 
 
   private http = inject(HttpClient);
 
@@ -33,49 +34,49 @@ delete(id: number): Observable<void> {
   return this.http.delete<void>(`${this.apiUrl}/${id}`);
 }
 
-getMockMundos(): Observable < Mundo[] > {
-  const mockMundos: Mundo[] = [
-    {
-      id: 1,
-      nombre: 'Mundo de los Sueños',
-      historia: 'Un mundo lleno de criaturas fantásticas y aventuras imposibles.',
-      imagenes: [
-        {
-          id: 1,
-          url: 'https://i.imgur.com/qLCFrsO.jpeg',
-          tipoEntidad: 'MUNDO',
-          nombreEntidad: 'Mundo de los Sueños',
-          nombre: 'Imagen principal de Mundo de los Sueños',
-          fechaSubida: new Date().toISOString(),
-          descripcion: ''
-        }
-      ]
-    },
-    {
-      id: 2,
-      nombre: 'Mundo de las Sombras',
-      historia: 'Un lugar oscuro donde solo los más valientes sobreviven.',
-      imagenes: []
-    },
-    {
-      id: 3,
-      nombre: 'Mundo del Tiempo',
-      historia: 'Donde el pasado, presente y futuro se entrelazan en un solo instante.',
-      imagenes: [
-        {
-          id: 2,
-          url: 'https://i.imgur.com/UqEGXsl.jpeg',
-          tipoEntidad: 'MUNDO',
-          nombreEntidad: 'Mundo del Tiempo',
-          nombre: 'Imagen del Mundo del Tiempo',
-          fechaSubida: new Date().toISOString(),
-          descripcion: ''
-        }
-      ]
-    }
-  ];
+// getMockMundos(): Observable < Mundo[] > {
+//   const mockMundos: Mundo[] = [
+//     {
+//       id: 1,
+//       nombre: 'Mundo de los Sueños',
+//       historia: 'Un mundo lleno de criaturas fantásticas y aventuras imposibles.',
+//       imagenes: [
+//         {
+//           id: 1,
+//           url: 'https://i.imgur.com/qLCFrsO.jpeg',
+//           tipoEntidad: 'MUNDO',
+//           nombreEntidad: 'Mundo de los Sueños',
+//           nombre: 'Imagen principal de Mundo de los Sueños',
+//           fechaSubida: new Date().toISOString(),
+//           descripcion: ''
+//         }
+//       ]
+//     },
+//     {
+//       id: 2,
+//       nombre: 'Mundo de las Sombras',
+//       historia: 'Un lugar oscuro donde solo los más valientes sobreviven.',
+//       imagenes: []
+//     },
+//     {
+//       id: 3,
+//       nombre: 'Mundo del Tiempo',
+//       historia: 'Donde el pasado, presente y futuro se entrelazan en un solo instante.',
+//       imagenes: [
+//         {
+//           id: 2,
+//           url: 'https://i.imgur.com/UqEGXsl.jpeg',
+//           tipoEntidad: 'MUNDO',
+//           nombreEntidad: 'Mundo del Tiempo',
+//           nombre: 'Imagen del Mundo del Tiempo',
+//           fechaSubida: new Date().toISOString(),
+//           descripcion: ''
+//         }
+//       ]
+//     }
+//   ];
 
-  return of(mockMundos);
-}
+//   return of(mockMundos);
+// }
 
 }

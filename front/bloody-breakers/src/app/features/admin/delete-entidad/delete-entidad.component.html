@@ -1,0 +1,26 @@
+<h2>Eliminar {{ tipo }}</h2>
+
+@if (entidades().length > 0) {
+  <label>Selecciona un {{ tipo }}:</label>
+  <select [(ngModel)]="seleccionadoId">
+    @for (entidad of entidades(); track entidad.id) {
+      <option [value]="entidad.id">
+        {{ entidad.nombre ?? 'Sin nombre (id: ' + entidad.id + ')' }}
+      </option>
+    }
+  </select>
+
+  @if (entidadSeleccionada() as seleccionada) {
+    <h3>Propiedades:</h3>
+    <pre>{{ seleccionada | json }}</pre>
+
+    @if (urlImagen(seleccionada) as imagenUrl) {
+      <h4>Imagen:</h4>
+      <img [src]="imagenUrl" alt="preview" style="max-width: 200px; max-height: 200px;" />
+    }
+
+    <button (click)="confirmarEliminacion()">Eliminar</button>
+  }
+} @else {
+  <p>Cargando o sin datos disponibles...</p>
+}
