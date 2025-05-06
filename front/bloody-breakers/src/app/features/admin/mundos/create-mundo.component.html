@@ -1,0 +1,25 @@
+<h2>Crear nuevo Mundo</h2>
+
+<form [formGroup]="mundoForm" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" type="text" formControlName="nombre" />
+  @if (mundoForm.get('nombre')?.invalid && mundoForm.get('nombre')?.touched) {
+    <p style="color:red;">El nombre es obligatorio</p>
+  }
+
+  <label for="historia">Historia:</label>
+  <textarea id="historia" formControlName="historia"></textarea>
+  @if (mundoForm.get('historia')?.invalid && mundoForm.get('historia')?.touched) {
+    <p style="color:red;">La historia es obligatoria</p>
+  }
+
+  <button type="submit" [disabled]="mundoForm.invalid">Crear</button>
+</form>
+
+@if (creado()) {
+  <p style="color:green;">Mundo creado con éxito</p>
+}
+
+@if (error()) {
+  <p style="color:red;">{{ error() }}</p>
+}

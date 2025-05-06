@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { LoginService } from '../../../core/services/login.service';
 
 @Component({
   selector: 'app-admin-panel',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,RouterOutlet],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.scss'
 })

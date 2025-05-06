@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
       timeOut: 3000,                     // opcional: duración en ms
       closeButton: true,                 // opcional: botón de cerrar
       progressBar: true                  // opcional: barra de progreso
-    })) // ✅ AQUI funciona
+    }))
 
   ]
 };

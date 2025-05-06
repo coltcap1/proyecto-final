@@ -38,7 +38,7 @@ const getPersonajeById = async (req, res) => {
 };
 
 const createPersonaje = async (req, res) => {
-    const { nombre, esEnemigo, historia, iconoUrl, id_mundo } = req.body;
+    const { nombre, esEnemigo, historia, iconoUrl, id_mundo, HABILIDADES } = req.body;
 
     if (!nombre || !iconoUrl || !id_mundo) {
         return res.status(400).json({ error: "nombre, iconoUrl e id_mundo son obligatorios" });
@@ -62,12 +62,19 @@ const createPersonaje = async (req, res) => {
             id_mundo
         });
 
+        // Si vienen habilidades, asociarlas
+        if (Array.isArray(HABILIDADES) && HABILIDADES.length > 0) {
+            const habilidadesIds = HABILIDADES.map(h => h.id);
+            await personaje.setHABILIDADES(habilidadesIds); // relación N:N
+        }
+
         return res.status(201).json(personaje);
     } catch (error) {
         console.error("Error al crear personaje:", error);
         return res.status(500).send("Error interno del servidor");
     }
 };
+
 
 const updatePersonaje = async (req, res) => {
     const { id } = req.params;

@@ -12,10 +12,10 @@ export class DashboardComponent {
   private router = inject(Router);
 
   private jwt = signal(sessionStorage.getItem('jwt'));
-  private role = signal(sessionStorage.getItem('role'));
+  private role = signal(sessionStorage.getItem('rol'));
 
   isLoggedIn = computed(() => !!this.jwt());
-  isAdmin = computed(() => this.role() === '1');
+  isAdmin = computed(() => this.role() == '1');
 
   navegar(ruta: string): void {
     this.router.navigate([ruta]);

@@ -33,15 +33,24 @@ const getHabilidadById = async (req, res) => {
 };
 
 const createHabilidad = async (req, res) => {
-    const { nombre, dano, iconoUrl } = req.body;
+    const { nombre, dano, iconoUrl, PERSONAJES } = req.body;
+  
     try {
-        const habilidad = await Habilidad.create({ nombre, dano, iconoUrl });
-        return res.status(201).json(habilidad);
+      const habilidad = await Habilidad.create({ nombre, dano, iconoUrl });
+  
+      // Si vienen personajes asociados, asociarlos
+      if (Array.isArray(PERSONAJES) && PERSONAJES.length > 0) {
+        const personajesIds = PERSONAJES.map(p => p.id);
+        await habilidad.setPERSONAJES(personajesIds); // Sequelize se encarga de la tabla intermedia
+      }
+  
+      return res.status(201).json(habilidad);
     } catch (error) {
-        console.error(error);
-        return res.status(500).send("Internal Server Error");
+      console.error(error);
+      return res.status(500).send("Internal Server Error");
     }
-};
+  };
+  
 
 const updateHabilidad = async (req, res) => {
     const { id } = req.params;

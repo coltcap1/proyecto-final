@@ -8,7 +8,7 @@
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Mundos</h5>
-          <a routerLink="/admin/mundos/crear" class="btn btn-primary w-100">Gestionar</a>
+          <a routerLink="/admin/mundos/create" class="btn btn-primary w-100">CREAR</a>
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Personajes</h5>
-          <a routerLink="/admin/personajes/crear" class="btn btn-primary w-100">Gestionar</a>
+          <a routerLink="/admin/personajes/create" class="btn btn-primary w-100">CREAR</a>
         </div>
       </div>
     </div>
@@ -26,7 +26,16 @@
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Escenarios</h5>
-          <a routerLink="/admin/escenarios/crear" class="btn btn-primary w-100">Gestionar</a>
+          <a routerLink="/admin/escenarios/create" class="btn btn-primary w-100">CREAR</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Habilidades</h5>
+          <a routerLink="/admin/habilidades/create" class="btn btn-primary w-100">CREAR</a>
         </div>
       </div>
     </div>
@@ -35,10 +44,13 @@
       <div class="card h-100">
         <div class="card-body">
           <h5 class="card-title">Imágenes</h5>
-          <a routerLink="/admin/imagenes/crear" class="btn btn-primary w-100">Gestionar</a>
+          <a routerLink="/admin/imagenes/create" class="btn btn-primary w-100">CREAR</a>
         </div>
       </div>
     </div>
+
+    <router-outlet></router-outlet> <!-- Necesario para mostrar rutas hijas -->
+
 
   </div>
 </div>

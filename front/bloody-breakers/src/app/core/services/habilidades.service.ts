@@ -21,9 +21,10 @@ export class HabilidadesService implements genericServiceInterface<Habilidad>{
     return this.http.get<Habilidad>(`${this.apiUrl}/${id}`);
   }
 
-  create(habilidad: Habilidad): Observable<Habilidad> {
+  create(habilidad: Partial<Habilidad>): Observable<Habilidad> {
     return this.http.post<Habilidad>(this.apiUrl, habilidad);
   }
+  
 
   update(id: number, habilidad: Habilidad): Observable<Habilidad> {
     return this.http.put<Habilidad>(`${this.apiUrl}/${id}`, habilidad);

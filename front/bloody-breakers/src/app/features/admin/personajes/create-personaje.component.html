@@ -1,0 +1,56 @@
+<h2>Crear nuevo Personaje</h2>
+
+<form [formGroup]="personajeForm" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" type="text" formControlName="nombre" />
+  @if (personajeForm.get('nombre')?.invalid && personajeForm.get('nombre')?.touched) {
+    <p style="color:red;">El nombre es obligatorio</p>
+  }
+
+  <label for="historia">Historia:</label>
+  <textarea id="historia" formControlName="historia"></textarea>
+
+  <label for="esEnemigo">¿Es enemigo?</label>
+  <input type="checkbox" formControlName="esEnemigo" />
+
+  <label for="iconoUrl">Icono (URL de Imgur):</label>
+  <input id="iconoUrl" type="text" formControlName="iconoUrl" />
+  @if (personajeForm.get('iconoUrl')?.errors?.['imgurUrl']) {
+    <p style="color:red;">La URL debe ser válida de Imgur</p>
+  }
+
+  @if (iconoUrlPreview()) {
+    <div style="margin-top: 10px;">
+      <h4>Vista previa del icono:</h4>
+      <img [src]="iconoUrlPreview()" alt="Icono" style="max-width: 200px; max-height: 200px;" />
+    </div>
+  }
+  
+  
+
+  <label for="id_mundo">Mundo:</label>
+  <select formControlName="id_mundo">
+    <option [value]="null">-- Selecciona un mundo --</option>
+    @for (mundo of mundos(); track mundo.id) {
+      <option [value]="mundo.id">{{ mundo.nombre }}</option>
+    }
+  </select>
+
+  <label for="habilidadId">Habilidad (opcional):</label>
+  <select formControlName="habilidadId">
+    <option [value]="null">-- Sin habilidad --</option>
+    @for (hab of habilidades(); track hab.id) {
+      <option [value]="hab.id">{{ hab.nombre }}</option>
+    }
+  </select>
+
+  <button type="submit" [disabled]="personajeForm.invalid">Crear</button>
+</form>
+
+@if (creado()) {
+  <p style="color:green;">Personaje creado con éxito</p>
+}
+
+@if (error()) {
+  <p style="color:red;">{{ error() }}</p>
+}

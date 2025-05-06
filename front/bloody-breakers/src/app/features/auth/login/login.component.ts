@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginService } from '../../core/services/login.service';
+
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../../../core/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.invalid) return;
-  
+
     this.loginService.login(this.loginForm.value).subscribe({
       next: (response) => {
         console.log('Rol recibido:', response.rol); // 👈 debug
