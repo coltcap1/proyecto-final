@@ -1,1 +1,59 @@
-<p>create-imagen works!</p>
+<h2>Crear nueva Imagen</h2>
+
+<form [formGroup]="imagenForm" (ngSubmit)="onSubmit()">
+  <label>Nombre:</label>
+  <input type="text" formControlName="nombre" />
+  @if (imagenForm.get('nombre')?.invalid && imagenForm.get('nombre')?.touched) {
+    <p style="color:red;">El nombre es obligatorio</p>
+  }
+
+  <label>URL (Imgur):</label>
+  <input type="text" formControlName="url" />
+  @if (imagenForm.get('url')?.errors?.['imgurUrl']) {
+    <p style="color:red;">La URL debe ser válida de Imgur</p>
+  }
+
+  @if (iconoUrlPreview()) {
+    <div style="margin-top: 10px;">
+      <h4>Vista previa:</h4>
+      <img [src]="iconoUrlPreview()" alt="preview" style="max-width: 200px; max-height: 200px;" />
+    </div>
+  }
+
+  <label>Descripción (opcional):</label>
+  <textarea formControlName="descripcion"></textarea>
+
+  <label>Tipo de Entidad:</label>
+  <select formControlName="tipoEntidad">
+    <option [value]="''">-- Seleccionar tipo --</option>
+    @for (tipo of tiposEntidad; track tipo) {
+      <option [value]="tipo">{{ tipo }}</option>
+    }
+  </select>
+  @if (imagenForm.get('tipoEntidad')?.invalid && imagenForm.get('tipoEntidad')?.touched) {
+    <p style="color:red;">Debe seleccionar un tipo de entidad</p>
+  }
+
+  @if (imagenForm.get('tipoEntidad')?.value !== 'EXTRAS') {
+    <label>Entidad relacionada:</label>
+    <select formControlName="idEntidad">
+      <option [value]="null">-- Selecciona una entidad --</option>
+      @for (ent of entidades(); track ent.id) {
+        <option [value]="ent.id">{{ ent.nombre ?? ('ID: ' + ent.id) }}</option>
+      }
+    </select>
+    @if (imagenForm.get('idEntidad')?.invalid && imagenForm.get('idEntidad')?.touched) {
+      <p style="color:red;">Debe seleccionar una entidad</p>
+    }
+  }
+
+  <button type="submit" [disabled]="imagenForm.invalid">Crear</button>
+</form>
+
+@if (creado()) {
+  <p style="color:green;">Imagen creada con éxito</p>
+}
+
+@if (error()) {
+  <p style="color:red;">{{ error() }}</p>
+}

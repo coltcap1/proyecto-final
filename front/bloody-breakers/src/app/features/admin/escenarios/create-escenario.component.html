@@ -1,1 +1,30 @@
-<p>create-escenario works!</p>
+<h2>Crear nuevo Escenario</h2>
+
+<form [formGroup]="escenarioForm" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" type="text" formControlName="nombre" />
+  @if (escenarioForm.get('nombre')?.invalid && escenarioForm.get('nombre')?.touched) {
+    <p style="color:red;">El nombre es obligatorio</p>
+  }
+
+  <label for="id_mundo">Mundo:</label>
+  <select formControlName="id_mundo">
+    <option [value]="null">-- Selecciona un mundo --</option>
+    @for (mundo of mundos(); track mundo.id) {
+      <option [value]="mundo.id">{{ mundo.nombre }}</option>
+    }
+  </select>
+  @if (escenarioForm.get('id_mundo')?.invalid && escenarioForm.get('id_mundo')?.touched) {
+    <p style="color:red;">Debe seleccionar un mundo</p>
+  }
+
+  <button type="submit" [disabled]="escenarioForm.invalid">Crear</button>
+</form>
+
+@if (creado()) {
+  <p style="color:green;">Escenario creado con éxito</p>
+}
+
+@if (error()) {
+  <p style="color:red;">{{ error() }}</p>
+}

@@ -69,8 +69,18 @@ export const routes: Routes = [
         path: 'habilidades/create',
         loadComponent: () =>
           import('./features/admin/habilidades/create-habilidad.component').then(m => m.CreateHabilidadComponent)
+      },
+      {
+        path: 'escenarios/create',
+        loadComponent: () =>
+          import('./features/admin/escenarios/create-escenario.component').then(m => m.CreateEscenarioComponent)
+      },
+      {
+        path: 'imagenes/create',
+        loadComponent: () =>
+          import('./features/admin/imagenes/create-imagen.component').then(m => m.CreateImagenComponent)
       }
-      
+
 
     ]
   }

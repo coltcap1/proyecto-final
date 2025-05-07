@@ -23,9 +23,9 @@ const getImagenById = async (req, res) => {
 };
 
 const createImagen = async (req, res) => {
-  const { tipo_entidad, id_entidad, nombre_img, url } = req.body;
+  const { tipo_entidad, id_entidad, nombre, url, descripcion } = req.body;
   try {
-    const imagen = await Imagen.create({ tipo_entidad, id_entidad, nombre_img, url });
+    const imagen = await Imagen.create({ tipo_entidad, id_entidad, nombre, url, descripcion });
     return res.status(201).json(imagen);
   } catch (error) {
     console.error(error);
