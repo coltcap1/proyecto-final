@@ -78,7 +78,7 @@ const createPersonaje = async (req, res) => {
 
 const updatePersonaje = async (req, res) => {
     const { id } = req.params;
-    const { nombre, isEnemy, historia, iconoUrl, id_mundo } = req.body;
+    const { nombre, isEnemy, historia, iconoUrl, id_mundo, HABILIDADES } = req.body;
 
     try {
         const personaje = await Personaje.findByPk(id);
@@ -97,13 +97,22 @@ const updatePersonaje = async (req, res) => {
             return res.status(400).json({ error: "iconoUrl debe ser una URL válida de Imgur" });
         }
 
-        await personaje.update({ nombre, isEnemy, historia, iconoUrl, id_mundo });
+        // Actualiza los campos del personaje
+        await personaje.update({ nombre, esEnemigo: isEnemy, historia, iconoUrl, id_mundo });
+
+        // Si vienen habilidades, actualizarlas
+        if (Array.isArray(HABILIDADES)) {
+            const habilidadesIds = HABILIDADES.map(h => h.id);
+            await personaje.setHABILIDADES(habilidadesIds); // Esto sincroniza la tabla intermedia
+        }
+
         return res.status(200).json(personaje);
     } catch (error) {
         console.error("Error al modificar personaje:", error);
         return res.status(500).send("Error interno del servidor");
     }
 };
+
 
 const deletePersonaje = async (req, res) => {
     const { id } = req.params;

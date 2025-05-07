@@ -1,1 +1,38 @@
-<p>delete-habilidad works!</p>
+<h2>Eliminar Habilidades</h2>
+
+@if (mensaje()) {
+  <p style="color: green;">{{ mensaje() }}</p>
+}
+
+@if (error()) {
+  <p style="color: red;">{{ error() }}</p>
+}
+
+@if (habilidades().length > 0) {
+  <ul style="list-style: none; padding: 0;">
+    @for (habilidad of habilidades(); track habilidad.id) {
+      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
+        
+        @if (habilidad.iconoUrl.startsWith('http')) {
+          <img [src]="habilidad.iconoUrl" alt="Icono"
+               style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
+        }
+
+        <p><strong>ID:</strong> {{ habilidad.id }}</p>
+        <p><strong>Nombre:</strong> {{ habilidad.nombre }}</p>
+        <p><strong>Daño:</strong> {{ habilidad.dano }}</p>
+
+        <p><strong>Personajes relacionados:</strong></p>
+        <ul>
+          @for (personaje of habilidad.PERSONAJES; track personaje.id) {
+            <li>{{ personaje.nombre }}</li>
+          }
+        </ul>
+
+        <button (click)="eliminar(habilidad.id)">Eliminar</button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No hay habilidades disponibles.</p>
+}

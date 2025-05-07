@@ -1,1 +1,32 @@
-<p>delete-personaje works!</p>
+<h2>Eliminar Personajes</h2>
+
+@if (mensaje()) {
+  <p style="color: green;">{{ mensaje() }}</p>
+}
+
+@if (error()) {
+  <p style="color: red;">{{ error() }}</p>
+}
+
+@if (personajes().length > 0) {
+  <ul style="list-style: none; padding: 0;">
+    @for (personaje of personajes(); track personaje.id) {
+      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
+        
+        @if (personaje.iconoUrl.startsWith('http')) {
+          <img [src]="personaje.iconoUrl" alt="Icono del personaje"
+               style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
+        }
+
+        <p><strong>ID:</strong> {{ personaje.id }}</p>
+        <p><strong>Nombre:</strong> {{ personaje.nombre }}</p>
+        <p><strong>Historia:</strong> {{ personaje.historia }}</p>
+        <p><strong>¿Es enemigo?:</strong> {{ personaje.esEnemigo ? 'Sí' : 'No' }}</p>
+
+        <button (click)="eliminar(personaje.id)">Eliminar</button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No hay personajes disponibles.</p>
+}

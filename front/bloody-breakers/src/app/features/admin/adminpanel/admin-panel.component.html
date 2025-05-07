@@ -4,53 +4,28 @@
   <button class="btn btn-outline-danger mb-4" (click)="logout()">Cerrar sesión</button>
 
   <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Mundos</h5>
-          <a routerLink="/admin/mundos/create" class="btn btn-primary w-100">CREAR</a>
+    @for (mod of rutasAgrupadas; track mod.entidad) {
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title text-capitalize">{{ mod.entidad }}</h5>
+
+            @for (op of mod.operaciones; track op) {
+              <a [routerLink]="['/admin', mod.entidad, op]"
+                 class="btn btn-sm w-100 mb-2"
+                 [ngClass]="{
+                   'btn-primary': op === 'create',
+                   'btn-warning': op === 'update',
+                   'btn-danger': op === 'delete'
+                 }">
+                {{ op.toUpperCase() }}
+              </a>
+            }
+          </div>
         </div>
       </div>
-    </div>
+    }
 
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Personajes</h5>
-          <a routerLink="/admin/personajes/create" class="btn btn-primary w-100">CREAR</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Escenarios</h5>
-          <a routerLink="/admin/escenarios/create" class="btn btn-primary w-100">CREAR</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Habilidades</h5>
-          <a routerLink="/admin/habilidades/create" class="btn btn-primary w-100">CREAR</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Imágenes</h5>
-          <a routerLink="/admin/imagenes/create" class="btn btn-primary w-100">CREAR</a>
-        </div>
-      </div>
-    </div>
-
-    <router-outlet></router-outlet> <!-- Necesario para mostrar rutas hijas -->
-
-
+    <router-outlet></router-outlet>
   </div>
 </div>

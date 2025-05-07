@@ -1,1 +1,55 @@
-<p>update-personaje works!</p>
+<h2>Actualizar Personaje</h2>
+
+@if (mensaje()) {
+<p style="color: green;">{{ mensaje() }}</p>
+}
+@if (error()) {
+<p style="color: red;">{{ error() }}</p>
+}
+
+@if (personajes().length > 0) {
+<label>Selecciona un personaje:</label>
+<select [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
+    <option [value]="null">-- Selecciona --</option>
+    @for (p of personajes(); track p.id) {
+    <option [value]="p.id">{{ p.nombre }}</option>
+    }
+</select>
+}
+
+@if (personajeSeleccionado) {
+<form [formGroup]="form" (ngSubmit)="actualizar()" style="margin-top: 20px;">
+    <label>Nombre:</label>
+    <input type="text" formControlName="nombre" />
+
+    <label>Historia:</label>
+    <textarea formControlName="historia"></textarea>
+
+    <label>¿Es enemigo?</label>
+    <input type="checkbox" formControlName="esEnemigo" />
+
+    <label>Icono (URL Imgur):</label>
+    <input type="text" formControlName="iconoUrl" />
+    @if (form.get('iconoUrl')?.valid) {
+    <div style="margin-top: 10px;">
+        <h4>Vista previa del ícono:</h4>
+        <img [src]="form.get('iconoUrl')?.value" alt="icono"
+            style="max-width: 200px; max-height: 150px; display: block;" />
+    </div>
+    }
+
+    @if (form.get('iconoUrl')?.errors?.['imgurUrl']) {
+    <p style="color: red;">La URL debe ser válida de Imgur</p>
+    }
+
+    <label>Mundo:</label>
+    <select formControlName="id_mundo">
+        <option [value]="null">-- Selecciona un mundo --</option>
+        @for (m of mundos(); track m.id) {
+        <option [value]="m.id">{{ m.nombre }}</option>
+        }
+    </select>
+
+    <button type="submit" [disabled]="form.invalid">Actualizar</button>
+</form>
+}

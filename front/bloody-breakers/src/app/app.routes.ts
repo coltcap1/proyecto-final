@@ -79,7 +79,59 @@ export const routes: Routes = [
         path: 'imagenes/create',
         loadComponent: () =>
           import('./features/admin/imagenes/create-imagen.component').then(m => m.CreateImagenComponent)
+      },
+      {
+        path: 'mundos/delete',
+        loadComponent: () =>
+          import('./features/admin/mundos/delete-mundo.component').then(m => m.DeleteMundoComponent)
+      },
+      {
+        path: 'personajes/delete',
+        loadComponent: () =>
+          import('./features/admin/personajes/delete-personaje.component').then(m => m.DeletePersonajeComponent)
+      },
+      {
+        path: 'habilidades/delete',
+        loadComponent: () =>
+          import('./features/admin/habilidades/delete-habilidad.component').then(m => m.DeleteHabilidadComponent)
+      },
+      {
+        path: 'escenarios/delete',
+        loadComponent: () =>
+          import('./features/admin/escenarios/delete-escenario.component').then(m => m.DeleteEscenarioComponent)
+      },
+      {
+        path: 'imagenes/delete',
+        loadComponent: () =>
+          import('./features/admin/imagenes/delete-imagen.component').then(m => m.DeleteImagenComponent)
+      },
+      {
+        path: 'mundos/update',
+        loadComponent: () =>
+          import('./features/admin/mundos/update-mundo.component').then(m => m.UpdateMundoComponent)
+      },
+      {
+        path: 'personajes/update',
+        loadComponent: () =>
+          import('./features/admin/personajes/update-personaje.component').then(m => m.UpdatePersonajeComponent)
+      },
+      {
+        path: 'habilidades/update',
+        loadComponent: () =>
+          import('./features/admin/habilidades/update-habilidad.component').then(m => m.UpdateHabilidadComponent)
+      },
+      {
+        path: 'escenarios/update',
+        loadComponent: () =>
+          import('./features/admin/escenarios/update-escenario.component').then(m => m.UpdateEscenarioComponent)
+      },
+      {
+        path: 'imagenes/update',
+        loadComponent: () =>
+          import('./features/admin/imagenes/update-imagen.component').then(m => m.UpdateImagenComponent)
       }
+      
+      
 
 
     ]

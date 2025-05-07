@@ -24,25 +24,25 @@
   <textarea formControlName="descripcion"></textarea>
 
   <label>Tipo de Entidad:</label>
-  <select formControlName="tipoEntidad">
+  <select formControlName="tipo_entidad">
     <option [value]="''">-- Seleccionar tipo --</option>
     @for (tipo of tiposEntidad; track tipo) {
       <option [value]="tipo">{{ tipo }}</option>
     }
   </select>
-  @if (imagenForm.get('tipoEntidad')?.invalid && imagenForm.get('tipoEntidad')?.touched) {
+  @if (imagenForm.get('tipo_entidad')?.invalid && imagenForm.get('tipo_entidad')?.touched) {
     <p style="color:red;">Debe seleccionar un tipo de entidad</p>
   }
 
-  @if (imagenForm.get('tipoEntidad')?.value !== 'EXTRAS') {
+  @if (imagenForm.get('tipo_entidad')?.value !== 'EXTRAS') {
     <label>Entidad relacionada:</label>
-    <select formControlName="idEntidad">
+    <select formControlName="id_entidad">
       <option [value]="null">-- Selecciona una entidad --</option>
       @for (ent of entidades(); track ent.id) {
         <option [value]="ent.id">{{ ent.nombre ?? ('ID: ' + ent.id) }}</option>
       }
     </select>
-    @if (imagenForm.get('idEntidad')?.invalid && imagenForm.get('idEntidad')?.touched) {
+    @if (imagenForm.get('id_entidad')?.invalid && imagenForm.get('id_entidad')?.touched) {
       <p style="color:red;">Debe seleccionar una entidad</p>
     }
   }

@@ -32,19 +32,19 @@ export class CreateImagenComponent implements OnInit {
     nombre: ['', Validators.required],
     url: ['', [Validators.required, this.imgurUrlValidator]],
     descripcion: [''],
-    tipoEntidad: ['', Validators.required],
-    idEntidad: [null] // quitar Validators.required
+    tipo_entidad: ['', Validators.required],
+    id_entidad: [null] // quitar Validators.required
 
   });
 
   readonly creado = signal(false);
   readonly error = signal<string | null>(null);
 
-  ngOnInit(): void {this.imagenForm.get('tipoEntidad')?.valueChanges.subscribe((tipo: string) => {
+  ngOnInit(): void {this.imagenForm.get('tipo_entidad')?.valueChanges.subscribe((tipo: string) => {
     this.entidades.set([]);
-    this.imagenForm.get('idEntidad')?.setValue(null);
+    this.imagenForm.get('id_entidad')?.setValue(null);
   
-    const idEntidadControl = this.imagenForm.get('idEntidad');
+    const idEntidadControl = this.imagenForm.get('id_entidad');
   
     if (tipo === 'EXTRAS') {
       idEntidadControl?.clearValidators(); // no es obligatorio
@@ -93,7 +93,7 @@ export class CreateImagenComponent implements OnInit {
 
     const payload = {
       ...formData,
-      idEntidad: formData.tipoEntidad === 'EXTRAS' ? 0 : formData.idEntidad
+      id_entidad: formData.tipo_entidad === 'EXTRAS' ? 0 : formData.id_entidad
     };
 
     this.imagenService.create(payload).subscribe({

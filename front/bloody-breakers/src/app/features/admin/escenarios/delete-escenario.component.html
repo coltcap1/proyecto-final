@@ -1,1 +1,31 @@
-<p>delete-escenario works!</p>
+<h2>Eliminar Escenarios</h2>
+
+@if (mensaje()) {
+  <p style="color: green;">{{ mensaje() }}</p>
+}
+
+@if (error()) {
+  <p style="color: red;">{{ error() }}</p>
+}
+
+@if (escenarios().length > 0) {
+  <ul style="list-style: none; padding: 0;">
+    @for (escenario of escenarios(); track escenario.id) {
+      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
+        
+        @if (escenario.IMAGENES.length > 0) {
+          <img [src]="escenario.IMAGENES[0].url" alt="Imagen del escenario"
+               style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
+        }
+
+        <p><strong>ID:</strong> {{ escenario.id }}</p>
+        <p><strong>Nombre:</strong> {{ escenario.nombre }}</p>
+        <p><strong>Mundo:</strong> {{ escenario.MUNDOS.nombre}}</p>
+
+        <button (click)="eliminar(escenario.id)">Eliminar</button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No hay escenarios disponibles.</p>
+}

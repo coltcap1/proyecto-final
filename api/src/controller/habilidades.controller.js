@@ -52,9 +52,9 @@ const createHabilidad = async (req, res) => {
   };
   
 
-const updateHabilidad = async (req, res) => {
+  const updateHabilidad = async (req, res) => {
     const { id } = req.params;
-    const { nombre, dano, iconoUrl } = req.body;
+    const { nombre, dano, iconoUrl, PERSONAJES } = req.body;
 
     if (!nombre || dano == null || !iconoUrl) {
         return res.status(400).json({ error: "Faltan campos requeridos" });
@@ -65,12 +65,20 @@ const updateHabilidad = async (req, res) => {
         if (!habilidad) return res.status(404).send("Habilidad no encontrada");
 
         await habilidad.update({ nombre, dano, iconoUrl });
+
+        // Actualizar personajes asociados si vienen en el body
+        if (Array.isArray(PERSONAJES)) {
+            const personajesIds = PERSONAJES.map(p => p.id);
+            await habilidad.setPERSONAJES(personajesIds); // Esto actualiza la tabla intermedia
+        }
+
         return res.json(habilidad);
     } catch (error) {
-        console.error(error);
+        console.error("Error al actualizar habilidad:", error);
         return res.status(500).send("Internal Server Error");
     }
 };
+
 
 const modifyHabilidad = async (req, res) => {
     const { id } = req.params;

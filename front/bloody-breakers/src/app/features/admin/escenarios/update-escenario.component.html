@@ -1,1 +1,35 @@
-<p>update-escenario works!</p>
+<h2>Actualizar Escenario</h2>
+
+@if (mensaje()) {
+  <p style="color: green;">{{ mensaje() }}</p>
+}
+@if (error()) {
+  <p style="color: red;">{{ error() }}</p>
+}
+
+@if (escenarios().length > 0) {
+  <label>Selecciona un escenario:</label>
+  <select [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
+    <option [value]="null">-- Selecciona --</option>
+    @for (e of escenarios(); track e.id) {
+      <option [value]="e.id">{{ e.nombre }}</option>
+    }
+  </select>
+}
+
+@if (escenarioSeleccionado) {
+  <form [formGroup]="form" (ngSubmit)="actualizar()" style="margin-top: 20px;">
+    <label>Nombre:</label>
+    <input type="text" formControlName="nombre" />
+
+    <label>Mundo:</label>
+    <select formControlName="id_mundo">
+      <option [value]="null">-- Selecciona un mundo --</option>
+      @for (m of mundos(); track m.id) {
+        <option [value]="m.id">{{ m.nombre }}</option>
+      }
+    </select>
+
+    <button type="submit" [disabled]="form.invalid">Actualizar</button>
+  </form>
+}

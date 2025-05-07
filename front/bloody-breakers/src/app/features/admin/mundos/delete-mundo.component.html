@@ -1,1 +1,31 @@
-<p>delete-mundo works!</p>
+<h2>Eliminar Mundos</h2>
+
+@if (mensaje()) {
+  <p style="color: green;">{{ mensaje() }}</p>
+}
+
+@if (error()) {
+  <p style="color: red;">{{ error() }}</p>
+}
+
+@if (mundos().length > 0) {
+  <ul style="list-style: none; padding: 0;">
+    @for (mundo of mundos(); track mundo.id) {
+      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
+        
+        @if (mundo.IMAGENES.length > 0) {
+          <img [src]="mundo.IMAGENES[0].url" alt="Imagen del mundo"
+               style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
+        }
+
+        <p><strong>ID:</strong> {{ mundo.id }}</p>
+        <p><strong>Nombre:</strong> {{ mundo.nombre }}</p>
+        <p><strong>Historia:</strong> {{ mundo.historia }}</p>
+
+        <button (click)="eliminar(mundo.id)">Eliminar</button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No hay mundos disponibles.</p>
+}

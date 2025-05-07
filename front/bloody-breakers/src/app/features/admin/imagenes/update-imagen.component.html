@@ -1,1 +1,63 @@
-<p>update-imagen works!</p>
+<h2>Actualizar Imagen</h2>
+
+@if (mensaje()) {
+  <p style="color: green;">{{ mensaje() }}</p>
+}
+@if (error()) {
+  <p style="color: red;">{{ error() }}</p>
+}
+
+@if (imagenes().length > 0) {
+  <label>Selecciona una imagen:</label>
+  <select [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
+    <option [value]="null">-- Selecciona --</option>
+    @for (i of imagenes(); track i.id) {
+      <option [value]="i.id">{{ i.nombre }}</option>
+    }
+  </select>
+}
+
+@if (imagenSeleccionada) {
+  <form [formGroup]="form" (ngSubmit)="actualizar()" style="margin-top: 20px;">
+    <label>Nombre:</label>
+    <input type="text" formControlName="nombre" />
+
+    <label>URL (Imgur):</label>
+    <input type="text" formControlName="url" />
+    @if (form.get('url')?.errors?.['imgurUrl']) {
+      <p style="color: red;">La URL debe ser válida de Imgur</p>
+    }
+
+    @if (form.get('url')?.valid) {
+      <div style="margin-top: 10px;">
+        <h4>Vista previa:</h4>
+        <img [src]="form.get('url')?.value"
+             alt="Preview"
+             style="max-width: 200px; max-height: 150px;" />
+      </div>
+    }
+
+    <label>Descripción (opcional):</label>
+    <textarea formControlName="descripcion"></textarea>
+
+    <label>Tipo de entidad:</label>
+    <select formControlName="tipo_entidad" (change)="onTipoEntidadChange()">
+      <option [value]="''">-- Selecciona --</option>
+      @for (tipo of tiposEntidad; track tipo) {
+        <option [value]="tipo">{{ tipo }}</option>
+      }
+    </select>
+
+    @if (form.get('tipo_entidad')?.value !== 'EXTRAS') {
+      <label>Entidad relacionada:</label>
+      <select formControlName="id_entidad">
+        <option [value]="null">-- Selecciona una entidad --</option>
+        @for (ent of entidades(); track ent.id) {
+          <option [value]="ent.id">{{ ent.nombre ?? ('ID: ' + ent.id) }}</option>
+        }
+      </select>
+    }
+
+    <button type="submit" [disabled]="form.invalid">Actualizar</button>
+  </form>
+}

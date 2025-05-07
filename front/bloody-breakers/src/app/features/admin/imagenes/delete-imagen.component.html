@@ -1,1 +1,31 @@
-<p>delete-imagen works!</p>
+<h2>Eliminar Imágenes</h2>
+
+@if (mensaje()) {
+  <p style="color: green;">{{ mensaje() }}</p>
+}
+
+@if (error()) {
+  <p style="color: red;">{{ error() }}</p>
+}
+
+@if (imagenes().length > 0) {
+  <ul style="list-style: none; padding: 0;">
+    @for (img of imagenes(); track img.id) {
+      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
+
+        <img [src]="img.url" alt="Preview"
+             style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
+
+        <p><strong>ID:</strong> {{ img.id }}</p>
+        <p><strong>Nombre:</strong> {{ img.nombre }}</p>
+        <p><strong>Descripción:</strong> {{ img.descripcion || 'Sin descripción' }}</p>
+        <p><strong>Tipo de entidad:</strong> {{ img.tipo_entidad }}</p>
+        <p><strong>ID de entidad:</strong> {{ img.id_entidad }}</p>
+
+        <button (click)="eliminar(img.id)">Eliminar</button>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>No hay imágenes disponibles.</p>
+}
