@@ -100,7 +100,11 @@ export class UpdateImagenComponent implements OnInit {
     const id = this.seleccionadoId();
     if (!id || this.form.invalid) return;
 
-    const datos = this.form.value;
+    const datos = {
+      ...this.form.value,
+      id_entidad: this.form.value.tipo_entidad === 'EXTRAS' ? 0 : this.form.value.id_entidad
+    };
+    
 
     this.imagenService.update(id, datos as Imagen).subscribe({
       next: () => this.mensaje.set('Imagen actualizada correctamente'),

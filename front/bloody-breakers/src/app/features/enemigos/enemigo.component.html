@@ -2,7 +2,7 @@
     <div class="modal-content" (click)="$event.stopPropagation()">
       <button class="modal-close" (click)="cerrarModal()">✖</button>
       <img [src]="enemigo.iconoUrl" alt="Icono grande" />
-      <h2>{{ enemigo.nombre }}</h2>
+      <h1>{{ enemigo.nombre }}</h1>
       <p>{{ enemigo.historia }}</p>
     </div>
   </div>

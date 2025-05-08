@@ -1,29 +1,191 @@
 [
+  {
+    "method": "GET",
+    "path": "/api/mundos",
+    "description": "Obtiene la lista completa de mundos registrados.",
+    "response": {
+      "status": 200,
+      "body": [
+        {
+          "id": 1,
+          "nombre": "Mundo Fantástico",
+          "historia": "Un mundo lleno de magia y criaturas.",
+          "IMAGENES": [
+            { "url": "https://i.imgur.com/imagen1.jpg" }
+          ]
+        }
+      ],
+      "description": "Lista de mundos con sus imágenes asociadas."
+    },
+    "exampleCurl": "curl -X GET http://localhost:3000/api/mundos"
+  },
+  {
+    "method": "GET",
+    "path": "/api/mundos/:id",
+    "description": "Obtiene los detalles de un mundo específico por su ID.",
+    "response": {
+      "status": 200,
+      "body": {
+        "id": 1,
+        "nombre": "Mundo Fantástico",
+        "historia": "Un mundo lleno de magia y criaturas.",
+        "IMAGENES": [
+          { "url": "https://i.imgur.com/imagen1.jpg" }
+        ]
+      },
+      "description": "Detalles del mundo con imágenes relacionadas."
+    },
+    "exampleCurl": "curl -X GET http://localhost:3000/api/mundos/1"
+  },
+  {
+    "method": "GET",
+    "path": "/api/personajes",
+    "description": "Devuelve todos los personajes disponibles.",
+    "response": {
+      "status": 200,
+      "body": [
+        {
+          "id": 1,
+          "nombre": "Aria",
+          "esEnemigo": false,
+          "historia": "Una heroína de los bosques.",
+          "iconoUrl": "https://i.imgur.com/aria.png",
+          "IMAGENES": [{ "url": "https://i.imgur.com/imagen2.jpg" }],
+          "HABILIDADES": [{ "id": 1, "nombre": "Disparo mágico" }]
+        }
+      ],
+      "description": "Lista de personajes con imágenes y habilidades."
+    },
+    "exampleCurl": "curl -X GET http://localhost:3000/api/personajes"
+  },
+  {
+    "method": "GET",
+    "path": "/api/personajes/:id",
+    "description": "Recupera los datos de un personaje específico por su ID.",
+    "response": {
+      "status": 200,
+      "body": {
+        "id": 1,
+        "nombre": "Aria",
+        "esEnemigo": false,
+        "historia": "Una heroína de los bosques.",
+        "iconoUrl": "https://i.imgur.com/aria.png",
+        "IMAGENES": [{ "url": "https://i.imgur.com/imagen2.jpg" }],
+        "HABILIDADES": [{ "id": 1, "nombre": "Disparo mágico" }]
+      },
+      "description": "Detalles del personaje con imágenes y habilidades."
+    },
+    "exampleCurl": "curl -X GET http://localhost:3000/api/personajes/1"
+  },
     {
       "method": "GET",
-      "path": "/api/users",
-      "description": "Obtiene todos los usuarios registrados.",
+      "path": "/api/habilidades",
+      "description": "Obtiene la lista completa de habilidades.",
       "response": {
         "status": 200,
-        "body": [{ "id": 1, "name": "Juan" }],
-        "description": "Lista de usuarios"
+        "body": [
+          {
+            "id": 1,
+            "nombre": "Disparo mágico",
+            "dano": 50,
+            "iconoUrl": "https://i.imgur.com/habilidad1.png",
+            "IMAGENES": [{ "url": "https://i.imgur.com/img1.png" }],
+            "PERSONAJES": [{ "id": 1, "nombre": "Aria" }]
+          }
+        ],
+        "description": "Lista de habilidades con imágenes asociadas y personajes que las utilizan."
       },
-      "exampleCurl": "curl -X GET http://localhost:3000/api/users"
+      "exampleCurl": "curl -X GET http://localhost:3000/api/habilidades"
     },
     {
-      "method": "POST",
-      "path": "/api/users",
-      "description": "Crea un nuevo usuario.",
-      "body": [
-        { "field": "name", "type": "string", "description": "Nombre del usuario" },
-        { "field": "email", "type": "string", "description": "Correo electrónico" }
-      ],
+      "method": "GET",
+      "path": "/api/habilidades/:id",
+      "description": "Obtiene los detalles de una habilidad por su ID.",
       "response": {
-        "status": 201,
-        "body": { "id": 2, "name": "Ana" },
-        "description": "Usuario creado"
+        "status": 200,
+        "body": {
+          "id": 1,
+          "nombre": "Disparo mágico",
+          "dano": 50,
+          "iconoUrl": "https://i.imgur.com/habilidad1.png",
+          "IMAGENES": [{ "url": "https://i.imgur.com/img1.png" }],
+          "PERSONAJES": [{ "id": 1, "nombre": "Aria" }]
+        },
+        "description": "Detalle de la habilidad con imágenes y personajes relacionados."
       },
-      "exampleCurl": "curl -X POST -H \"Content-Type: application/json\" -d '{\"name\":\"Ana\",\"email\":\"ana@example.com\"}' http://localhost:3000/api/users"
+      "exampleCurl": "curl -X GET http://localhost:3000/api/habilidades/1"
+    },
+    {
+      "method": "GET",
+      "path": "/api/escenarios",
+      "description": "Obtiene todos los escenarios registrados.",
+      "response": {
+        "status": 200,
+        "body": [
+          {
+            "id": 1,
+            "nombre": "Bosque Encantado",
+            "MUNDOS": { "id": 1, "nombre": "Mundo Fantástico" },
+            "IMAGENES": [{ "url": "https://i.imgur.com/escenario1.jpg" }]
+          }
+        ],
+        "description": "Lista de escenarios con su mundo asociado e imágenes."
+      },
+      "exampleCurl": "curl -X GET http://localhost:3000/api/escenarios"
+    },
+    {
+      "method": "GET",
+      "path": "/api/escenarios/:id",
+      "description": "Obtiene los detalles de un escenario por su ID.",
+      "response": {
+        "status": 200,
+        "body": {
+          "id": 1,
+          "nombre": "Bosque Encantado",
+          "MUNDOS": { "id": 1, "nombre": "Mundo Fantástico" },
+          "IMAGENES": [{ "url": "https://i.imgur.com/escenario1.jpg" }]
+        },
+        "description": "Detalle del escenario con mundo e imágenes asociadas."
+      },
+      "exampleCurl": "curl -X GET http://localhost:3000/api/escenarios/1"
+    },
+    {
+      "method": "GET",
+      "path": "/api/imagenes",
+      "description": "Obtiene todas las imágenes del sistema.",
+      "response": {
+        "status": 200,
+        "body": [
+          {
+            "id": 1,
+            "tipo_entidad": "PERSONAJE",
+            "id_entidad": 1,
+            "nombre": "Aria en batalla",
+            "url": "https://i.imgur.com/aria_battle.png",
+            "descripcion": "Aria peleando en el bosque"
+          }
+        ],
+        "description": "Lista de imágenes asociadas a distintas entidades."
+      },
+      "exampleCurl": "curl -X GET http://localhost:3000/api/imagenes"
+    },
+    {
+      "method": "GET",
+      "path": "/api/imagenes/:id",
+      "description": "Obtiene una imagen específica por su ID.",
+      "response": {
+        "status": 200,
+        "body": {
+          "id": 1,
+          "tipo_entidad": "PERSONAJE",
+          "id_entidad": 1,
+          "nombre": "Aria en batalla",
+          "url": "https://i.imgur.com/aria_battle.png",
+          "descripcion": "Aria peleando en el bosque"
+        },
+        "description": "Detalle de una imagen específica por ID."
+      },
+      "exampleCurl": "curl -X GET http://localhost:3000/api/imagenes/1"
     }
-  ]
   
+]

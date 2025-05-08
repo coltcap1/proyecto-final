@@ -1,0 +1,25 @@
+<h1>Galería de Imágenes</h1>
+
+<div class="galeria-grid">
+  @for (img of imagenes(); track img.id) {
+    <div class="imagen-thumbnail" (click)="abrir(img)">
+      <img [src]="img.url" [alt]="img.nombre" />
+    </div>
+  }
+</div>
+
+
+@if (imagenActiva()) {
+  <div class="modal-overlay" (click)="cerrar()">
+    <div class="modal-contenido" (click)="$event.stopPropagation()">
+      <button class="cerrar" (click)="cerrar()">✖</button>
+      <img [src]="imagenActiva()?.url" alt="Imagen expandida" />
+      <div class="info">
+        <p><strong>Nombre:</strong> {{ imagenActiva()?.nombre }}</p>
+        <p><strong>Descripción:</strong> {{ imagenActiva()?.descripcion || 'Sin descripción' }}</p>
+        <p><strong>Tipo de entidad:</strong> {{ imagenActiva()?.tipo_entidad }}</p>
+        <p><strong>ID de entidad:</strong> {{ imagenActiva()?.id_entidad }}</p>
+      </div>
+    </div>
+  </div>
+}

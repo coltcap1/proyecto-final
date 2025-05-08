@@ -2,16 +2,11 @@
   background-color: rgb(158, 62, 69);
   display: flex;
   overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .gif-principal {
-  position: absolute;
 justify-self: center;
-align-self: flex-start;
-}
-
-.clickable {
-  cursor: pointer;
+align-self: center;
 }

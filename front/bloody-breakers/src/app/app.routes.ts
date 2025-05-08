@@ -45,6 +45,13 @@ export const routes: Routes = [
       import('./features/auth/login/login.component').then(m => m.LoginComponent),
   },
   {
+    path: 'galeria',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/galeria/galeria.component').then(m => m.GaleriaComponent)
+  }
+  ,
+  {
     path: 'register',
     loadComponent: () =>
       import('./features/auth/register/register.component').then(m => m.RegisterComponent),
@@ -130,8 +137,8 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/admin/imagenes/update-imagen.component').then(m => m.UpdateImagenComponent)
       }
-      
-      
+
+
 
 
     ]
