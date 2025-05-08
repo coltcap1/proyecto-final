@@ -1,13 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
-import { AdminPanelComponent } from './features/admin/adminpanel/admin-panel.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DashboardComponent,AdminPanelComponent],
+  imports: [RouterOutlet, DashboardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

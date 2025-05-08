@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { EscenarioComponent } from './escenario.component';
 import { EscenariosService } from '../../core/services/escenarios.service';
 import { Escenario } from '../../models/escenario.model';
+import { LoaderComponent } from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-escenario-list',
   standalone: true,
-  imports: [CommonModule, EscenarioComponent],
+  imports: [CommonModule, EscenarioComponent,LoaderComponent],
   templateUrl: './escenario-list.component.html',
   styleUrls: ['./escenario-list.component.scss']
 })

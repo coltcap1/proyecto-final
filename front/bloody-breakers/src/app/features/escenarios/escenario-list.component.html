@@ -1,6 +1,10 @@
 <section class="escenarios-container">
-    @for (escenario of escenarios(); track escenario.id) {
-      <app-escenario class="slide-up" [escenario]="escenario" />
-    }
-  </section>
-  
+  @defer (when escenarios().length > 0){
+  @for (escenario of escenarios(); track escenario.id) {
+  <app-escenario class="slide-up" [escenario]="escenario" />
+  }
+  }
+  @placeholder{
+  <app-loader />
+  }
+</section>

@@ -1,5 +1,9 @@
-  <section class="mundos-container">
+<section class="mundos-container">
+  @defer (when mundos().length > 0) {
     @for (mundo of mundos(); track mundo.id) {
-    <app-mundo [mundo]="mundo" />
+      <app-mundo [mundo]="mundo" />
     }
-  </section>
+  } @placeholder {
+    <app-loader />
+  }
+</section>

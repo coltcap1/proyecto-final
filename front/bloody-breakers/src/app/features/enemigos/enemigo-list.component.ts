@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Personaje } from '../../models/personaje.model';
 import { PersonajesService } from '../../core/services/personajes.service';
 import { EnemigoComponent } from './enemigo.component';
+import { LoaderComponent } from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-enemigo-list',
   standalone: true,
-  imports: [CommonModule, EnemigoComponent],
+  imports: [CommonModule, EnemigoComponent, LoaderComponent],
   templateUrl: './enemigo-list.component.html',
   styleUrls: ['./enemigo-list.component.scss']
 })

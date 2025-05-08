@@ -1,18 +1,21 @@
-<section  class="personajes-container">
-    <div class="personajes-grid">
-      @for (enemigo of enemigos(); track enemigo.id) {
-        @if(enemigo.esEnemigo === true){
-        <div class="personaje-card" (click)="seleccionar(enemigo)">
-          <img [src]="enemigo.iconoUrl" [alt]="enemigo.nombre" />
-        </div>
-      }
-    }
-    
+<section class="personajes-container">
+  @defer (when enemigos().length > 0 ){
+  <div class="personajes-grid">
+    @for (enemigo of enemigos(); track enemigo.id) {
+    @if(enemigo.esEnemigo === true){
+    <div class="personaje-card" (click)="seleccionar(enemigo)">
+      <img [src]="enemigo.iconoUrl" [alt]="enemigo.nombre" />
     </div>
-    @if (seleccionado()) {
-      <app-enemigo [enemigo]="seleccionado()!" (cerrar)="cerrarModal()" />
     }
-  </section>
-  
+    }
 
-  
+
+  </div>
+  }@placeholder{
+  <app-loader />
+  }
+  @if (seleccionado()) {
+  <app-enemigo [enemigo]="seleccionado()!" (cerrar)="cerrarModal()" />
+  }
+</section>
+

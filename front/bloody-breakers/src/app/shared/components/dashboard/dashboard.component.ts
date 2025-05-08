@@ -13,6 +13,10 @@ export class DashboardComponent {
   private router = inject(Router);
   private loginService = inject(LoginService);
 
+  logout():void{
+    this.loginService.logout();
+  }
+
   // ✅ signals reactivas del LoginService
   isLoggedIn = this.loginService.isLoggedIn;
   isAdmin = this.loginService.isAdmin;

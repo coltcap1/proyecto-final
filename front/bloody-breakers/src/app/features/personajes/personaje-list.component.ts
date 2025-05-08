@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Personaje } from '../../models/personaje.model';
 import { PersonajesService } from '../../core/services/personajes.service';
 import { PersonajeComponent } from './personaje.component';
+import { LoaderComponent } from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-personaje-list',
   standalone: true,
-  imports: [CommonModule, PersonajeComponent],
+  imports: [CommonModule, PersonajeComponent,LoaderComponent],
   templateUrl: './personaje-list.component.html',
   styleUrls: ['./personaje-list.component.scss']
 })

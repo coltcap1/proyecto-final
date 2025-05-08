@@ -21,4 +21,8 @@
   }
 
   <button (click)="navegar('/documentacion')">DOCUMENTACIÓN</button>
+
+    @if (isLoggedIn()) {
+    <button (click)="logout()" style="background: black;">LOGOUT</button>
+  }
 </div>
