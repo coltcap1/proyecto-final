@@ -62,3 +62,37 @@
     cursor: pointer;
   }
   
+  @media (max-width: 768px) {
+  .galeria-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 🔧 Columnas más pequeñas en móvil */
+    gap: 12px;
+    margin-top: 10px;
+    padding: 0 1rem;
+  }
+
+  .imagen-thumbnail img {
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .modal-contenido {
+    padding: 1rem;
+    max-width: 95%;
+    border-radius: 10px;
+  }
+
+  .modal-contenido img {
+    max-height: 250px; /* 🔧 Imagen más pequeña en el modal */
+    margin-bottom: 10px;
+  }
+
+  .modal-contenido .info {
+    font-size: 0.95rem;
+  }
+
+  .cerrar {
+    font-size: 1.25rem;
+    top: 8px;
+    right: 8px;
+  }
+}

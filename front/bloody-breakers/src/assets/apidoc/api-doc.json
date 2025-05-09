@@ -17,7 +17,7 @@
       ],
       "description": "Lista de mundos con sus imágenes asociadas."
     },
-    "exampleCurl": "curl -X GET http://localhost:3000/api/mundos"
+    "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/mundos"
   },
   {
     "method": "GET",
@@ -35,7 +35,7 @@
       },
       "description": "Detalles del mundo con imágenes relacionadas."
     },
-    "exampleCurl": "curl -X GET http://localhost:3000/api/mundos/1"
+    "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/mundos/1"
   },
   {
     "method": "GET",
@@ -56,7 +56,7 @@
       ],
       "description": "Lista de personajes con imágenes y habilidades."
     },
-    "exampleCurl": "curl -X GET http://localhost:3000/api/personajes"
+    "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/personajes"
   },
   {
     "method": "GET",
@@ -75,7 +75,7 @@
       },
       "description": "Detalles del personaje con imágenes y habilidades."
     },
-    "exampleCurl": "curl -X GET http://localhost:3000/api/personajes/1"
+    "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/personajes/1"
   },
     {
       "method": "GET",
@@ -95,7 +95,7 @@
         ],
         "description": "Lista de habilidades con imágenes asociadas y personajes que las utilizan."
       },
-      "exampleCurl": "curl -X GET http://localhost:3000/api/habilidades"
+      "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/habilidades"
     },
     {
       "method": "GET",
@@ -113,7 +113,7 @@
         },
         "description": "Detalle de la habilidad con imágenes y personajes relacionados."
       },
-      "exampleCurl": "curl -X GET http://localhost:3000/api/habilidades/1"
+      "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/habilidades/1"
     },
     {
       "method": "GET",
@@ -131,7 +131,7 @@
         ],
         "description": "Lista de escenarios con su mundo asociado e imágenes."
       },
-      "exampleCurl": "curl -X GET http://localhost:3000/api/escenarios"
+      "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/escenarios"
     },
     {
       "method": "GET",
@@ -147,7 +147,7 @@
         },
         "description": "Detalle del escenario con mundo e imágenes asociadas."
       },
-      "exampleCurl": "curl -X GET http://localhost:3000/api/escenarios/1"
+      "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/escenarios/1"
     },
     {
       "method": "GET",
@@ -167,7 +167,7 @@
         ],
         "description": "Lista de imágenes asociadas a distintas entidades."
       },
-      "exampleCurl": "curl -X GET http://localhost:3000/api/imagenes"
+      "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/imagenes"
     },
     {
       "method": "GET",
@@ -185,7 +185,7 @@
         },
         "description": "Detalle de una imagen específica por ID."
       },
-      "exampleCurl": "curl -X GET http://localhost:3000/api/imagenes/1"
+      "exampleCurl": "curl -X GET https://proyecto-final-wzmt.onrender.com/api/imagenes/1"
     }
   
 ]

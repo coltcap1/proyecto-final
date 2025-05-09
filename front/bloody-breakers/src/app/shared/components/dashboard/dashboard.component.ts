@@ -15,6 +15,7 @@ export class DashboardComponent {
 
   logout():void{
     this.loginService.logout();
+    this.navegar('/');
   }
 
   // ✅ signals reactivas del LoginService

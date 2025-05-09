@@ -1,4 +1,13 @@
 /* From Uiverse.io by BlackisPlay */ 
+
+#centrar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 #ghost {
   position: relative;
   scale: 0.8;
@@ -306,13 +315,64 @@
   animation: shadowMovement infinite 0.5s;
 }
 
-@keyframes shadowMovement {
-  0%,
-  49% {
-    opacity: 0.5;
+
+@media (max-width: 768px) {
+  #centrar {
+    top: 60%;
+    transform: translate(-50%, -60%);
   }
-  50%,
-  100% {
-    opacity: 0.2;
+
+  #ghost {
+    scale: 0.6;
+  }
+
+  #red {
+    width: 100px;
+    height: 100px;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(14, 1fr);
+  }
+
+  #eye,
+  #eye1 {
+    width: 30px;
+    height: 40px;
+    top: 20px;
+  }
+
+  #eye::before,
+  #eye1::before {
+    width: 15px;
+    height: 40px;
+    transform: translateX(8px);
+  }
+
+  #eye::after,
+  #eye1::after {
+    width: 30px;
+    height: 20px;
+    transform: translateY(8px);
+  }
+
+  #pupil,
+  #pupil1 {
+    width: 14px;
+    height: 14px;
+    top: 40px;
+  }
+
+  #pupil {
+    left: 8px;
+  }
+
+  #pupil1 {
+    right: 38px;
+  }
+
+  #shadow {
+    width: 100px;
+    height: 100px;
+    top: 90%;
+    filter: blur(15px);
   }
 }

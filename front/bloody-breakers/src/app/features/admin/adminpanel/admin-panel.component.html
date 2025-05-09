@@ -1,8 +1,6 @@
 <div class="container my-5">
   <h1 class="mb-4">Panel de Administración</h1>
 
-  <button class="btn btn-outline-danger mb-4" (click)="logout()">Cerrar sesión</button>
-
   <div class="row row-cols-1 row-cols-md-2 g-4">
     @for (mod of rutasAgrupadas; track mod.entidad) {
       <div class="col">

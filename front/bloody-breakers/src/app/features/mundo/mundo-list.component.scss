@@ -2,7 +2,14 @@
   .mundos-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* 🔥 Centramos cada mundo */
+    align-items: center; 
     gap: 2rem;
-    padding: 2rem 5%; /* 🔥 5% de margen a cada lado */
+    padding: 2rem 5%; 
   }
+
+  @media (max-width: 768px) {
+  .mundos-container {
+    padding: 1rem 1rem; /* 🔧 Menos padding lateral */
+    gap: 1rem; /* 🔧 Menor separación entre elementos */
+  }
+}

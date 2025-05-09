@@ -1,28 +1,28 @@
 <div class="dashboard-bar">
   <!-- Secciones públicas -->
-  <button (click)="navegar('/')">INICIO</button>
-  <button (click)="navegar('/mundos')">MUNDOS</button>
-  <button (click)="navegar('/personajes')">PERSONAJES</button>
-  <button (click)="navegar('/enemigos')">ENEMIGOS</button>
-  <button (click)="navegar('/escenarios')">ESCENARIOS</button>
+  <button class="glitched" (click)="navegar('/')">INICIO</button>
+  <button class="glitched" (click)="navegar('/mundos')">MUNDOS</button>
+  <button class="glitched" (click)="navegar('/personajes')">PERSONAJES</button>
+  <button class="glitched" (click)="navegar('/enemigos')">ENEMIGOS</button>
+  <button class="glitched" (click)="navegar('/escenarios')">ESCENARIOS</button>
 
   <!-- Secciones condicionales -->
   @if (!isLoggedIn()) {
-    <button (click)="navegar('/login')">LOGIN</button>
-    <button (click)="navegar('/register')">REGISTRO</button>
+    <button class="glitched" (click)="navegar('/login')">LOGIN</button>
+    <button class="glitched" (click)="navegar('/register')">REGISTRO</button>
   }
 
   @if (isLoggedIn()) {
-    <button (click)="navegar('/galeria')">GALERÍA</button>
+    <button class="glitched" (click)="navegar('/galeria')">GALERÍA</button>
   }
 
   @if (isAdmin()) {
-    <button (click)="navegar('/admin')">ADMIN</button>
+    <button class="glitched" (click)="navegar('/admin')">ADMIN</button>
   }
 
-  <button (click)="navegar('/documentacion')">DOCUMENTACIÓN</button>
+  <button class="glitched" (click)="navegar('/documentacion')">DOCUMENTACIÓN</button>
 
     @if (isLoggedIn()) {
-    <button (click)="logout()" style="background: black;">LOGOUT</button>
+    <button class="glitched" (click)="logout()" style="background: black;">LOGOUT</button>
   }
 </div>

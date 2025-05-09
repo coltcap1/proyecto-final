@@ -14,18 +14,20 @@
   }
 }
 
-/* 🔥 Animación slide-up */
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
+@keyframes modalAppear {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 
 @keyframes matrix {
   0% {
@@ -111,3 +113,13 @@
  }
 
 
+@keyframes shadowMovement {
+  0%,
+  49% {
+    opacity: 0.5;
+  }
+  50%,
+  100% {
+    opacity: 0.2;
+  }
+}

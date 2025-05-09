@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="card shadow p-4 mx-auto" style="max-width: 400px;">
-    <h1 class="text-center text-danger mb-4">Iniciar sesión</h1>
+    <h1 class="text-center mb-4">Iniciar sesión</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <!-- Campo Email -->
@@ -27,7 +27,7 @@
       }
 
       <!-- Botón de envío -->
-      <button type="submit" class="btn btn-danger w-100" [disabled]="loginForm.invalid">
+      <button type="submit" class="glitched btn w-100" [disabled]="loginForm.invalid">
         Entrar
       </button>
     </form>

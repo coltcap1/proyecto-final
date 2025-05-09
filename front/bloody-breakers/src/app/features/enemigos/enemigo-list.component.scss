@@ -1,34 +1,68 @@
 .personajes-container {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column; /* Vertical */
-  justify-content: center; /* Centrar verticalmente */
-  align-items: center;     /* Centrar horizontalmente */
-  gap: 1.5rem;
   padding: 2rem 5%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.personajes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 1fr)); // Hasta 4 por fila
+  gap: 0; // Espaciado entre personajes
+  width: 100%;
+  max-width: 800px;
+  justify-items: center;
 }
 
 .personaje-card {
-  background-color: rgb(158, 62, 69);
-  width: 300px;
-  aspect-ratio: 1 / 1;
+  background-color: #9e3e45;
+  border: 2px solid #333; // Gris oscuro
+  border-radius: 1rem; // Redondeado estilo ficha
+  width: 160px;
+  height: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 
   img {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: 1rem; // también redondea la imagen
     display: block;
   }
 
   &:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 10px #000;
     z-index: 2;
   }
 }
-                                        
+
+@media (max-width: 768px) {
+  .personajes-container {
+    padding: 1rem 1rem;
+    gap: 1rem;
+  }
+
+  .personajes-grid {
+    grid-template-columns: repeat(2, minmax(140px, 1fr)); // 🔧 Solo 2 por fila en móvil
+    gap: 1rem;
+    justify-items: center;
+  }
+
+  .personaje-card {
+    width: 130px;
+    height: 130px;
+
+    img {
+      border-radius: 0.75rem;
+    }
+  }
+}

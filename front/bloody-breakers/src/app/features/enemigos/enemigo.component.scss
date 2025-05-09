@@ -1,18 +1,4 @@
-@keyframes modalAppear {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    60% {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
+
   .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -55,3 +41,28 @@
     cursor: pointer;
   }
   
+
+  @media (max-width: 768px) {
+  .modal-content {
+    padding: 1rem;
+    max-width: 95%;
+    width: 95%;
+    font-size: 0.95rem;
+    border-radius: 6px;
+
+    img {
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  .modal-close {
+    top: 8px;
+    right: 8px;
+    font-size: 1.25rem;
+  }
+}

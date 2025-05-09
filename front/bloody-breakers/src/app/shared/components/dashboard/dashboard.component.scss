@@ -31,3 +31,19 @@
     text-overflow: ellipsis;
   }
   
+
+  @media (max-width: 768px) {
+  .dashboard-bar {
+    flex-direction: column; /* ✅ apila los botones verticalmente */
+    height: auto; /* se adapta al contenido */
+    min-height: unset; /* eliminamos min-height si no queremos límite */
+    padding: 0.5rem;
+    gap: 0.5rem; /* espacio entre botones */
+  }
+
+  .dashboard-bar button {
+    width: 100%; /* ✅ cada botón ocupa todo el ancho */
+    height: 40px; /* altura razonable para móvil */
+    font-size: 0.9rem;
+  }
+}
