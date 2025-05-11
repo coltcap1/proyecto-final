@@ -1,46 +1,60 @@
-<h1>Crear nueva Habilidad</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Crear nueva Habilidad</h1>
 
-<form [formGroup]="habilidadForm" (ngSubmit)="onSubmit()">
-  <label for="nombre">Nombre:</label>
-  <input id="nombre" type="text" formControlName="nombre" />
-  @if (habilidadForm.get('nombre')?.invalid && habilidadForm.get('nombre')?.touched) {
-    <p style="color:red;">El nombre es obligatorio</p>
-  }
+  <form [formGroup]="habilidadForm" (ngSubmit)="onSubmit()" class="needs-validation">
 
-  <label for="dano">Daño:</label>
-  <input id="dano" type="number" formControlName="dano" />
-  @if (habilidadForm.get('dano')?.invalid && habilidadForm.get('dano')?.touched) {
-    <p style="color:red;">El daño es obligatorio</p>
-  }
-
-  <label for="iconoUrl">Icono (URL de Imgur):</label>
-  <input id="iconoUrl" type="text" formControlName="iconoUrl" />
-  @if (habilidadForm.get('iconoUrl')?.errors?.['imgurUrl']) {
-    <p style="color:red;">La URL debe ser válida de Imgur</p>
-  }
-
-  @if (iconoUrlPreview()) {
-    <div style="margin-top: 10px;">
-      <h4>Vista previa del icono:</h4>
-      <img [src]="iconoUrlPreview()" alt="Icono" style="max-width: 200px; max-height: 200px;" />
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input id="nombre" type="text" formControlName="nombre" class="form-control"
+             [class.is-invalid]="habilidadForm.get('nombre')?.invalid && habilidadForm.get('nombre')?.touched" />
+      @if (habilidadForm.get('nombre')?.invalid && habilidadForm.get('nombre')?.touched) {
+        <div class="invalid-feedback">El nombre es obligatorio</div>
+      }
     </div>
+
+    <div class="mb-3">
+      <label for="dano" class="form-label">Daño:</label>
+      <input id="dano" type="number" formControlName="dano" class="form-control"
+             [class.is-invalid]="habilidadForm.get('dano')?.invalid && habilidadForm.get('dano')?.touched" />
+      @if (habilidadForm.get('dano')?.invalid && habilidadForm.get('dano')?.touched) {
+        <div class="invalid-feedback">El daño es obligatorio</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="iconoUrl" class="form-label">Icono (URL de Imgur):</label>
+      <input id="iconoUrl" type="text" formControlName="iconoUrl" class="form-control"
+             [class.is-invalid]="habilidadForm.get('iconoUrl')?.errors?.['imgurUrl']" />
+      @if (habilidadForm.get('iconoUrl')?.errors?.['imgurUrl']) {
+        <div class="invalid-feedback">La URL debe ser válida de Imgur</div>
+      }
+    </div>
+
+    @if (iconoUrlPreview()) {
+      <div class="mb-3">
+        <h5>Vista previa del icono:</h5>
+        <img [src]="iconoUrlPreview()" alt="Icono" class="img-fluid" style="max-width: 200px; max-height: 200px;" />
+      </div>
+    }
+
+    <div class="mb-3">
+      <label for="personajeId" class="form-label">Personaje (opcional):</label>
+      <select id="personajeId" formControlName="personajeId" class="form-select">
+        <option [value]="null">-- Sin personaje asociado --</option>
+        @for (personaje of personajes(); track personaje.id) {
+          <option [value]="personaje.id">{{ personaje.nombre }}</option>
+        }
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="habilidadForm.invalid">Crear</button>
+  </form>
+
+  @if (creado()) {
+    <div class="alert alert-success mt-3">Habilidad creada con éxito</div>
   }
 
-  <label for="personajeId">Personaje (opcional):</label>
-  <select formControlName="personajeId">
-    <option [value]="null">-- Sin personaje asociado --</option>
-    @for (personaje of personajes(); track personaje.id) {
-      <option [value]="personaje.id">{{ personaje.nombre }}</option>
-    }
-  </select>
-
-  <button type="submit" [disabled]="habilidadForm.invalid">Crear</button>
-</form>
-
-@if (creado()) {
-  <p style="color:green;">Habilidad creada con éxito</p>
-}
-
-@if (error()) {
-  <p style="color:red;">{{ error() }}</p>
-}
+  @if (error()) {
+    <div class="alert alert-danger mt-3">{{ error() }}</div>
+  }
+</div>

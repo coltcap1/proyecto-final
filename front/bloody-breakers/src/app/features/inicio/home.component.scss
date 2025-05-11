@@ -7,8 +7,12 @@
 }
 
 .gif-principal {
-justify-self: center;
-align-self: center;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+
 }
 
 @media (max-width: 768px) {

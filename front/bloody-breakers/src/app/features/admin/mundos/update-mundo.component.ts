@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './update-mundo.component.html',
+  styleUrl: './update-mundo.component.scss'
 })
 export class UpdateMundoComponent implements OnInit {
   private mundosService = inject(MundosService);

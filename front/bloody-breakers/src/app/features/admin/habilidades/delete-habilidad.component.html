@@ -1,38 +1,47 @@
-<h1>Eliminar Habilidades</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Eliminar Habilidades</h1>
 
-@if (mensaje()) {
-  <p style="color: green;">{{ mensaje() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (error()) {
-  <p style="color: red;">{{ error() }}</p>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (habilidades().length > 0) {
-  <ul style="list-style: none; padding: 0;">
-    @for (habilidad of habilidades(); track habilidad.id) {
-      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
-        
-        @if (habilidad.iconoUrl.startsWith('http')) {
-          <img [src]="habilidad.iconoUrl" alt="Icono"
-               style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
-        }
+  @if (habilidades().length > 0) {
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      @for (habilidad of habilidades(); track habilidad.id) {
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            @if (habilidad.iconoUrl.startsWith('http')) {
+              <img [src]="habilidad.iconoUrl" alt="Icono" class="card-img-top"
+                   style="max-height: 200px; object-fit: contain; background-color: #f8f9fa;" />
+            }
 
-        <p><strong>ID:</strong> {{ habilidad.id }}</p>
-        <p><strong>Nombre:</strong> {{ habilidad.nombre }}</p>
-        <p><strong>Daño:</strong> {{ habilidad.dano }}</p>
+            <div class="card-body">
+              <h5 class="card-title">{{ habilidad.nombre }}</h5>
+              <p class="card-text"><strong>ID:</strong> {{ habilidad.id }}</p>
+              <p class="card-text"><strong>Daño:</strong> {{ habilidad.dano }}</p>
 
-        <p><strong>Personajes relacionados:</strong></p>
-        <ul>
-          @for (personaje of habilidad.PERSONAJES; track personaje.id) {
-            <li>{{ personaje.nombre }}</li>
-          }
-        </ul>
+              <div>
+                <strong>Personajes relacionados:</strong>
+                <ul class="mb-0 ps-3">
+                  @for (personaje of habilidad.PERSONAJES; track personaje.id) {
+                    <li>{{ personaje.nombre }}</li>
+                  }
+                </ul>
+              </div>
+            </div>
 
-        <button (click)="eliminar(habilidad.id)">Eliminar</button>
-      </li>
-    }
-  </ul>
-} @else {
-  <p>No hay habilidades disponibles.</p>
-}
+            <div class="card-footer text-end">
+              <button class="btn btn-danger" (click)="eliminar(habilidad.id)">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="text-muted">No hay habilidades disponibles.</p>
+  }
+</div>

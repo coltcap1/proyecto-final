@@ -1,31 +1,38 @@
-<h1>Eliminar Imágenes</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Eliminar Imágenes</h1>
 
-@if (mensaje()) {
-  <p style="color: green;">{{ mensaje() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (error()) {
-  <p style="color: red;">{{ error() }}</p>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (imagenes().length > 0) {
-  <ul style="list-style: none; padding: 0;">
-    @for (img of imagenes(); track img.id) {
-      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
+  @if (imagenes().length > 0) {
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      @for (img of imagenes(); track img.id) {
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <img [src]="img.url" alt="Preview" class="card-img-top"
+                 style="max-height: 200px; object-fit: contain; background-color: #f8f9fa;" />
 
-        <img [src]="img.url" alt="Preview"
-             style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
+            <div class="card-body">
+              <h5 class="card-title">{{ img.nombre }}</h5>
+              <p class="card-text"><strong>ID:</strong> {{ img.id }}</p>
+              <p class="card-text"><strong>Descripción:</strong> {{ img.descripcion || 'Sin descripción' }}</p>
+              <p class="card-text"><strong>Tipo de entidad:</strong> {{ img.tipo_entidad }}</p>
+              <p class="card-text"><strong>ID de entidad:</strong> {{ img.id_entidad }}</p>
+            </div>
 
-        <p><strong>ID:</strong> {{ img.id }}</p>
-        <p><strong>Nombre:</strong> {{ img.nombre }}</p>
-        <p><strong>Descripción:</strong> {{ img.descripcion || 'Sin descripción' }}</p>
-        <p><strong>Tipo de entidad:</strong> {{ img.tipo_entidad }}</p>
-        <p><strong>ID de entidad:</strong> {{ img.id_entidad }}</p>
-
-        <button (click)="eliminar(img.id)">Eliminar</button>
-      </li>
-    }
-  </ul>
-} @else {
-  <p>No hay imágenes disponibles.</p>
-}
+            <div class="card-footer text-end">
+              <button class="btn btn-danger" (click)="eliminar(img.id)">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="text-muted">No hay imágenes disponibles.</p>
+  }
+</div>

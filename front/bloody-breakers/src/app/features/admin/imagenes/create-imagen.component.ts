@@ -13,7 +13,8 @@ import { HabilidadesService } from '../../../core/services/habilidades.service';
   selector: 'app-create-imagen',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './create-imagen.component.html'
+  templateUrl: './create-imagen.component.html',
+  styleUrl:'./create-imagen.component.scss'
 })
 export class CreateImagenComponent implements OnInit {
   private fb = inject(FormBuilder);

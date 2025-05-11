@@ -12,7 +12,8 @@ import { HabilidadesService } from '../../../core/services/habilidades.service';
   selector: 'app-create-personaje',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './create-personaje.component.html'
+  templateUrl: './create-personaje.component.html',
+  styleUrl: './create-personaje.component.scss'
 })
 export class CreatePersonajeComponent implements OnInit {
   private fb = inject(FormBuilder);

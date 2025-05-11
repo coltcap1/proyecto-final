@@ -15,6 +15,7 @@ import { HabilidadesService } from '../../../core/services/habilidades.service';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './update-imagen.component.html',
+  styleUrl: './update-imagen.component.scss'
 })
 export class UpdateImagenComponent implements OnInit {
   private imagenService = inject(ImagenesService);

@@ -11,6 +11,7 @@ import { MundosService } from '../../../core/services/mundos.service';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './update-personaje.component.html',
+  styleUrl: './update-personaje.component.scss'
 })
 export class UpdatePersonajeComponent implements OnInit {
   private personajeService = inject(PersonajesService);

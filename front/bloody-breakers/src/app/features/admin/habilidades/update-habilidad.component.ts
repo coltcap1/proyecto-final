@@ -11,6 +11,7 @@ import { PersonajesService } from '../../../core/services/personajes.service';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './update-habilidad.component.html',
+  styleUrl: './update-habilidad.component.scss'
 })
 export class UpdateHabilidadComponent implements OnInit {
   private habilidadService = inject(HabilidadesService);

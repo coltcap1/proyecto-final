@@ -1,63 +1,82 @@
-<h1>Actualizar Imagen</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Actualizar Imagen</h1>
 
-@if (mensaje()) {
-  <p style="color: green;">{{ mensaje() }}</p>
-}
-@if (error()) {
-  <p style="color: red;">{{ error() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (imagenes().length > 0) {
-  <label>Selecciona una imagen:</label>
-  <select [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
-    <option [value]="null">-- Selecciona --</option>
-    @for (i of imagenes(); track i.id) {
-      <option [value]="i.id">{{ i.nombre }}</option>
-    }
-  </select>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (imagenSeleccionada) {
-  <form [formGroup]="form" (ngSubmit)="actualizar()" style="margin-top: 20px;">
-    <label>Nombre:</label>
-    <input type="text" formControlName="nombre" />
-
-    <label>URL (Imgur):</label>
-    <input type="text" formControlName="url" />
-    @if (form.get('url')?.errors?.['imgurUrl']) {
-      <p style="color: red;">La URL debe ser válida de Imgur</p>
-    }
-
-    @if (form.get('url')?.valid) {
-      <div style="margin-top: 10px;">
-        <h4>Vista previa:</h4>
-        <img [src]="form.get('url')?.value"
-             alt="Preview"
-             style="max-width: 200px; max-height: 150px;" />
-      </div>
-    }
-
-    <label>Descripción (opcional):</label>
-    <textarea formControlName="descripcion"></textarea>
-
-    <label>Tipo de entidad:</label>
-    <select formControlName="tipo_entidad" (change)="onTipoEntidadChange()">
-      <option [value]="''">-- Selecciona --</option>
-      @for (tipo of tiposEntidad; track tipo) {
-        <option [value]="tipo">{{ tipo }}</option>
-      }
-    </select>
-
-    @if (form.get('tipo_entidad')?.value !== 'EXTRAS') {
-      <label>Entidad relacionada:</label>
-      <select formControlName="id_entidad">
-        <option [value]="null">-- Selecciona una entidad --</option>
-        @for (ent of entidades(); track ent.id) {
-          <option [value]="ent.id">{{ ent.nombre ?? ('ID: ' + ent.id) }}</option>
+  @if (imagenes().length > 0) {
+    <div class="mb-3">
+      <label for="seleccionImagen" class="form-label">Selecciona una imagen:</label>
+      <select id="seleccionImagen" class="form-select"
+              [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
+        <option [value]="null">-- Selecciona --</option>
+        @for (i of imagenes(); track i.id) {
+          <option [value]="i.id">{{ i.nombre }}</option>
         }
       </select>
-    }
+    </div>
+  }
 
-    <button type="submit" [disabled]="form.invalid">Actualizar</button>
-  </form>
-}
+  @if (imagenSeleccionada) {
+    <form [formGroup]="form" (ngSubmit)="actualizar()" class="needs-validation">
+
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input id="nombre" type="text" formControlName="nombre" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="url" class="form-label">URL (Imgur):</label>
+        <input id="url" type="text" formControlName="url" class="form-control"
+               [class.is-invalid]="form.get('url')?.errors?.['imgurUrl']" />
+        @if (form.get('url')?.errors?.['imgurUrl']) {
+          <div class="invalid-feedback d-block">La URL debe ser válida de Imgur</div>
+        }
+      </div>
+
+      @if (form.get('url')?.valid) {
+        <div class="mb-3">
+          <h5>Vista previa:</h5>
+          <img [src]="form.get('url')?.value"
+               alt="Preview"
+               class="img-fluid"
+               style="max-width: 200px; max-height: 150px;" />
+        </div>
+      }
+
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción (opcional):</label>
+        <textarea id="descripcion" formControlName="descripcion" class="form-control"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="tipo_entidad" class="form-label">Tipo de entidad:</label>
+        <select id="tipo_entidad" formControlName="tipo_entidad" class="form-select" (change)="onTipoEntidadChange()">
+          <option [value]="''">-- Selecciona --</option>
+          @for (tipo of tiposEntidad; track tipo) {
+            <option [value]="tipo">{{ tipo }}</option>
+          }
+        </select>
+      </div>
+
+      @if (form.get('tipo_entidad')?.value !== 'EXTRAS') {
+        <div class="mb-3">
+          <label for="id_entidad" class="form-label">Entidad relacionada:</label>
+          <select id="id_entidad" formControlName="id_entidad" class="form-select">
+            <option [value]="null">-- Selecciona una entidad --</option>
+            @for (ent of entidades(); track ent.id) {
+              <option [value]="ent.id">{{ ent.nombre ?? ('ID: ' + ent.id) }}</option>
+            }
+          </select>
+        </div>
+      }
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Actualizar</button>
+    </form>
+  }
+</div>

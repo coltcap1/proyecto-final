@@ -1,32 +1,39 @@
-<h1>Eliminar Personajes</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Eliminar Personajes</h1>
 
-@if (mensaje()) {
-  <p style="color: green;">{{ mensaje() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (error()) {
-  <p style="color: red;">{{ error() }}</p>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (personajes().length > 0) {
-  <ul style="list-style: none; padding: 0;">
-    @for (personaje of personajes(); track personaje.id) {
-      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
-        
-        @if (personaje.iconoUrl.startsWith('http')) {
-          <img [src]="personaje.iconoUrl" alt="Icono del personaje"
-               style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
-        }
+  @if (personajes().length > 0) {
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      @for (personaje of personajes(); track personaje.id) {
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            @if (personaje.iconoUrl.startsWith('http')) {
+              <img [src]="personaje.iconoUrl" alt="Icono del personaje" class="card-img-top"
+                   style="max-height: 200px; object-fit: contain; background-color: #f8f9fa;" />
+            }
 
-        <p><strong>ID:</strong> {{ personaje.id }}</p>
-        <p><strong>Nombre:</strong> {{ personaje.nombre }}</p>
-        <p><strong>Historia:</strong> {{ personaje.historia }}</p>
-        <p><strong>¿Es enemigo?:</strong> {{ personaje.esEnemigo ? 'Sí' : 'No' }}</p>
+            <div class="card-body">
+              <h5 class="card-title">{{ personaje.nombre }}</h5>
+              <p class="card-text"><strong>ID:</strong> {{ personaje.id }}</p>
+              <p class="card-text"><strong>Historia:</strong> {{ personaje.historia }}</p>
+              <p class="card-text"><strong>¿Es enemigo?:</strong> {{ personaje.esEnemigo ? 'Sí' : 'No' }}</p>
+            </div>
 
-        <button (click)="eliminar(personaje.id)">Eliminar</button>
-      </li>
-    }
-  </ul>
-} @else {
-  <p>No hay personajes disponibles.</p>
-}
+            <div class="card-footer text-end">
+              <button class="btn btn-danger" (click)="eliminar(personaje.id)">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="text-muted">No hay personajes disponibles.</p>
+  }
+</div>

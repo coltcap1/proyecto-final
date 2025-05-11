@@ -1,59 +1,76 @@
-<h1>Crear nueva Imagen</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Crear nueva Imagen</h1>
 
-<form [formGroup]="imagenForm" (ngSubmit)="onSubmit()">
-  <label>Nombre:</label>
-  <input type="text" formControlName="nombre" />
-  @if (imagenForm.get('nombre')?.invalid && imagenForm.get('nombre')?.touched) {
-    <p style="color:red;">El nombre es obligatorio</p>
-  }
+  <form [formGroup]="imagenForm" (ngSubmit)="onSubmit()" class="needs-validation">
 
-  <label>URL (Imgur):</label>
-  <input type="text" formControlName="url" />
-  @if (imagenForm.get('url')?.errors?.['imgurUrl']) {
-    <p style="color:red;">La URL debe ser válida de Imgur</p>
-  }
-
-  @if (iconoUrlPreview()) {
-    <div style="margin-top: 10px;">
-      <h4>Vista previa:</h4>
-      <img [src]="iconoUrlPreview()" alt="preview" style="max-width: 200px; max-height: 200px;" />
-    </div>
-  }
-
-  <label>Descripción (opcional):</label>
-  <textarea formControlName="descripcion"></textarea>
-
-  <label>Tipo de Entidad:</label>
-  <select formControlName="tipo_entidad">
-    <option [value]="''">-- Seleccionar tipo --</option>
-    @for (tipo of tiposEntidad; track tipo) {
-      <option [value]="tipo">{{ tipo }}</option>
-    }
-  </select>
-  @if (imagenForm.get('tipo_entidad')?.invalid && imagenForm.get('tipo_entidad')?.touched) {
-    <p style="color:red;">Debe seleccionar un tipo de entidad</p>
-  }
-
-  @if (imagenForm.get('tipo_entidad')?.value !== 'EXTRAS') {
-    <label>Entidad relacionada:</label>
-    <select formControlName="id_entidad">
-      <option [value]="null">-- Selecciona una entidad --</option>
-      @for (ent of entidades(); track ent.id) {
-        <option [value]="ent.id">{{ ent.nombre ?? ('ID: ' + ent.id) }}</option>
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input id="nombre" type="text" formControlName="nombre" class="form-control"
+             [class.is-invalid]="imagenForm.get('nombre')?.invalid && imagenForm.get('nombre')?.touched" />
+      @if (imagenForm.get('nombre')?.invalid && imagenForm.get('nombre')?.touched) {
+        <div class="invalid-feedback">El nombre es obligatorio</div>
       }
-    </select>
-    @if (imagenForm.get('id_entidad')?.invalid && imagenForm.get('id_entidad')?.touched) {
-      <p style="color:red;">Debe seleccionar una entidad</p>
+    </div>
+
+    <div class="mb-3">
+      <label for="url" class="form-label">URL (Imgur):</label>
+      <input id="url" type="text" formControlName="url" class="form-control"
+             [class.is-invalid]="imagenForm.get('url')?.errors?.['imgurUrl']" />
+      @if (imagenForm.get('url')?.errors?.['imgurUrl']) {
+        <div class="invalid-feedback">La URL debe ser válida de Imgur</div>
+      }
+    </div>
+
+    @if (iconoUrlPreview()) {
+      <div class="mb-3">
+        <h5>Vista previa:</h5>
+        <img [src]="iconoUrlPreview()" alt="preview" class="img-fluid" style="max-width: 200px; max-height: 200px;" />
+      </div>
     }
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción (opcional):</label>
+      <textarea id="descripcion" formControlName="descripcion" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="tipo_entidad" class="form-label">Tipo de Entidad:</label>
+      <select id="tipo_entidad" formControlName="tipo_entidad" class="form-select"
+              [class.is-invalid]="imagenForm.get('tipo_entidad')?.invalid && imagenForm.get('tipo_entidad')?.touched">
+        <option [value]="''">-- Seleccionar tipo --</option>
+        @for (tipo of tiposEntidad; track tipo) {
+          <option [value]="tipo">{{ tipo }}</option>
+        }
+      </select>
+      @if (imagenForm.get('tipo_entidad')?.invalid && imagenForm.get('tipo_entidad')?.touched) {
+        <div class="invalid-feedback">Debe seleccionar un tipo de entidad</div>
+      }
+    </div>
+
+    @if (imagenForm.get('tipo_entidad')?.value !== 'EXTRAS') {
+      <div class="mb-3">
+        <label for="id_entidad" class="form-label">Entidad relacionada:</label>
+        <select id="id_entidad" formControlName="id_entidad" class="form-select"
+                [class.is-invalid]="imagenForm.get('id_entidad')?.invalid && imagenForm.get('id_entidad')?.touched">
+          <option [value]="null">-- Selecciona una entidad --</option>
+          @for (ent of entidades(); track ent.id) {
+            <option [value]="ent.id">{{ ent.nombre ?? ('ID: ' + ent.id) }}</option>
+          }
+        </select>
+        @if (imagenForm.get('id_entidad')?.invalid && imagenForm.get('id_entidad')?.touched) {
+          <div class="invalid-feedback">Debe seleccionar una entidad</div>
+        }
+      </div>
+    }
+
+    <button type="submit" class="btn btn-primary" [disabled]="imagenForm.invalid">Crear</button>
+  </form>
+
+  @if (creado()) {
+    <div class="alert alert-success mt-3">Imagen creada con éxito</div>
   }
 
-  <button type="submit" [disabled]="imagenForm.invalid">Crear</button>
-</form>
-
-@if (creado()) {
-  <p style="color:green;">Imagen creada con éxito</p>
-}
-
-@if (error()) {
-  <p style="color:red;">{{ error() }}</p>
-}
+  @if (error()) {
+    <div class="alert alert-danger mt-3">{{ error() }}</div>
+  }
+</div>

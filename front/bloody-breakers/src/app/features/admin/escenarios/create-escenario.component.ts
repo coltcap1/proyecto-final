@@ -10,7 +10,8 @@ import { MundosService } from '../../../core/services/mundos.service';
   selector: 'app-create-escenario',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './create-escenario.component.html'
+  templateUrl: './create-escenario.component.html',
+  styleUrl: './create-escenario.component.scss'
 })
 export class CreateEscenarioComponent implements OnInit {
   private fb = inject(FormBuilder);

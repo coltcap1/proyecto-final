@@ -1,31 +1,38 @@
-<h1>Eliminar Mundos</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Eliminar Mundos</h1>
 
-@if (mensaje()) {
-  <p style="color: green;">{{ mensaje() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (error()) {
-  <p style="color: red;">{{ error() }}</p>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (mundos().length > 0) {
-  <ul style="list-style: none; padding: 0;">
-    @for (mundo of mundos(); track mundo.id) {
-      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
-        
-        @if (mundo.IMAGENES.length > 0) {
-          <img [src]="mundo.IMAGENES[0].url" alt="Imagen del mundo"
-               style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
-        }
+  @if (mundos().length > 0) {
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      @for (mundo of mundos(); track mundo.id) {
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            @if (mundo.IMAGENES.length > 0) {
+              <img [src]="mundo.IMAGENES[0].url" alt="Imagen del mundo" class="card-img-top"
+                   style="max-height: 200px; object-fit: contain; background-color: #f8f9fa;" />
+            }
 
-        <p><strong>ID:</strong> {{ mundo.id }}</p>
-        <p><strong>Nombre:</strong> {{ mundo.nombre }}</p>
-        <p><strong>Historia:</strong> {{ mundo.historia }}</p>
+            <div class="card-body">
+              <h5 class="card-title">{{ mundo.nombre }}</h5>
+              <p class="card-text"><strong>ID:</strong> {{ mundo.id }}</p>
+              <p class="card-text"><strong>Historia:</strong> {{ mundo.historia }}</p>
+            </div>
 
-        <button (click)="eliminar(mundo.id)">Eliminar</button>
-      </li>
-    }
-  </ul>
-} @else {
-  <p>No hay mundos disponibles.</p>
-}
+            <div class="card-footer text-end">
+              <button class="btn btn-danger" (click)="eliminar(mundo.id)">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="text-muted">No hay mundos disponibles.</p>
+  }
+</div>

@@ -16,10 +16,11 @@
     height: 100%;
     margin: 0;
     border: none;
-    background-color: rgb(199, 70, 78);
-    color: white;
+    background-color: #bf2541;
+    color: white !important;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    
 
     &:hover {
       background-color: rgb(151, 67, 71);

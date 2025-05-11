@@ -1,31 +1,38 @@
-<h1>Eliminar Escenarios</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Eliminar Escenarios</h1>
 
-@if (mensaje()) {
-  <p style="color: green;">{{ mensaje() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (error()) {
-  <p style="color: red;">{{ error() }}</p>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (escenarios().length > 0) {
-  <ul style="list-style: none; padding: 0;">
-    @for (escenario of escenarios(); track escenario.id) {
-      <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 8px;">
-        
-        @if (escenario.IMAGENES.length > 0) {
-          <img [src]="escenario.IMAGENES[0].url" alt="Imagen del escenario"
-               style="max-width: 200px; max-height: 150px; display: block; margin-bottom: 10px;" />
-        }
+  @if (escenarios().length > 0) {
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      @for (escenario of escenarios(); track escenario.id) {
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            @if (escenario.IMAGENES.length > 0) {
+              <img [src]="escenario.IMAGENES[0].url" alt="Imagen del escenario" class="card-img-top"
+                   style="max-height: 200px; object-fit: cover;" />
+            }
 
-        <p><strong>ID:</strong> {{ escenario.id }}</p>
-        <p><strong>Nombre:</strong> {{ escenario.nombre }}</p>
-        <p><strong>Mundo:</strong> {{ escenario.MUNDOS.nombre}}</p>
+            <div class="card-body">
+              <h5 class="card-title">{{ escenario.nombre }}</h5>
+              <p class="card-text"><strong>ID:</strong> {{ escenario.id }}</p>
+              <p class="card-text"><strong>Mundo:</strong> {{ escenario.MUNDOS.nombre }}</p>
+            </div>
 
-        <button (click)="eliminar(escenario.id)">Eliminar</button>
-      </li>
-    }
-  </ul>
-} @else {
-  <p>No hay escenarios disponibles.</p>
-}
+            <div class="card-footer text-end">
+              <button class="btn btn-danger" (click)="eliminar(escenario.id)">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="text-muted">No hay escenarios disponibles.</p>
+  }
+</div>

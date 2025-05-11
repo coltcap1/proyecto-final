@@ -1,48 +1,48 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-  .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.modal-content {
+  background-color: #bf2541;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  animation: modalAppear 0.3s ease-out;
+
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
   }
-  
-  .modal-content {
-    background-color: white;
-    border-radius: 8px;
-    padding: 2rem;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-    animation: modalAppear 0.3s ease-out;
-  
-    img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-    }
-  
-    h2 {
-      margin-top: 0;
-      margin-bottom: 1rem;
-    }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
   }
-  
-  .modal-close {
-    all: unset ;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  @media (max-width: 768px) {
+}
+
+.modal-close {
+  all: unset;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
   .modal-content {
     padding: 1rem;
     max-width: 95%;

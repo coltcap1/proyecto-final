@@ -1,53 +1,70 @@
-<h1>Actualizar Habilidad</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Actualizar Habilidad</h1>
 
-@if (mensaje()) {
-  <p style="color: green;">{{ mensaje() }}</p>
-}
-@if (error()) {
-  <p style="color: red;">{{ error() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (habilidades().length > 0) {
-  <label>Selecciona una habilidad:</label>
-  <select [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
-    <option [value]="null">-- Selecciona --</option>
-    @for (h of habilidades(); track h.id) {
-      <option [value]="h.id">{{ h.nombre }}</option>
-    }
-  </select>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (habilidadSeleccionada) {
-  <form [formGroup]="form" (ngSubmit)="actualizar()" style="margin-top: 20px;">
-    <label>Nombre:</label>
-    <input type="text" formControlName="nombre" />
+  @if (habilidades().length > 0) {
+    <div class="mb-3">
+      <label for="seleccionHabilidad" class="form-label">Selecciona una habilidad:</label>
+      <select id="seleccionHabilidad" class="form-select"
+              [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
+        <option [value]="null">-- Selecciona --</option>
+        @for (h of habilidades(); track h.id) {
+          <option [value]="h.id">{{ h.nombre }}</option>
+        }
+      </select>
+    </div>
+  }
 
-    <label>Daño:</label>
-    <input type="number" formControlName="dano" />
+  @if (habilidadSeleccionada) {
+    <form [formGroup]="form" (ngSubmit)="actualizar()" class="needs-validation">
 
-    <label>Icono (URL Imgur):</label>
-    <input type="text" formControlName="iconoUrl" />
-    @if (form.get('iconoUrl')?.errors?.['imgurUrl']) {
-      <p style="color: red;">La URL debe ser válida de Imgur</p>
-    }
-
-    @if (form.get('iconoUrl')?.valid) {
-      <div style="margin-top: 10px;">
-        <h4>Vista previa:</h4>
-        <img [src]="form.get('iconoUrl')?.value"
-             alt="Icono"
-             style="max-width: 200px; max-height: 150px; display: block;" />
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input id="nombre" type="text" formControlName="nombre" class="form-control" />
       </div>
-    }
 
-    <label>Personaje (opcional):</label>
-    <select formControlName="personajeId">
-      <option [value]="null">-- Sin personaje asociado --</option>
-      @for (p of personajes(); track p.id) {
-        <option [value]="p.id">{{ p.nombre }}</option>
+      <div class="mb-3">
+        <label for="dano" class="form-label">Daño:</label>
+        <input id="dano" type="number" formControlName="dano" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="iconoUrl" class="form-label">Icono (URL Imgur):</label>
+        <input id="iconoUrl" type="text" formControlName="iconoUrl" class="form-control"
+               [class.is-invalid]="form.get('iconoUrl')?.errors?.['imgurUrl']" />
+        @if (form.get('iconoUrl')?.errors?.['imgurUrl']) {
+          <div class="invalid-feedback d-block">La URL debe ser válida de Imgur</div>
+        }
+      </div>
+
+      @if (form.get('iconoUrl')?.valid) {
+        <div class="mb-3">
+          <h5>Vista previa:</h5>
+          <img [src]="form.get('iconoUrl')?.value"
+               alt="Icono"
+               class="img-fluid"
+               style="max-width: 200px; max-height: 150px;" />
+        </div>
       }
-    </select>
 
-    <button type="submit" [disabled]="form.invalid">Actualizar</button>
-  </form>
-}
+      <div class="mb-3">
+        <label for="personajeId" class="form-label">Personaje (opcional):</label>
+        <select id="personajeId" formControlName="personajeId" class="form-select">
+          <option [value]="null">-- Sin personaje asociado --</option>
+          @for (p of personajes(); track p.id) {
+            <option [value]="p.id">{{ p.nombre }}</option>
+          }
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Actualizar</button>
+    </form>
+  }
+</div>

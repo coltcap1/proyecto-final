@@ -1,30 +1,39 @@
-<h1>Crear nuevo Escenario</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Crear nuevo Escenario</h1>
 
-<form [formGroup]="escenarioForm" (ngSubmit)="onSubmit()">
-  <label for="nombre">Nombre:</label>
-  <input id="nombre" type="text" formControlName="nombre" />
-  @if (escenarioForm.get('nombre')?.invalid && escenarioForm.get('nombre')?.touched) {
-    <p style="color:red;">El nombre es obligatorio</p>
+  <form [formGroup]="escenarioForm" (ngSubmit)="onSubmit()" class="needs-validation">
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input id="nombre" type="text" formControlName="nombre" class="form-control"
+             [class.is-invalid]="escenarioForm.get('nombre')?.invalid && escenarioForm.get('nombre')?.touched" />
+      @if (escenarioForm.get('nombre')?.invalid && escenarioForm.get('nombre')?.touched) {
+        <div class="invalid-feedback">El nombre es obligatorio</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="id_mundo" class="form-label">Mundo:</label>
+      <select id="id_mundo" formControlName="id_mundo" class="form-select"
+              [class.is-invalid]="escenarioForm.get('id_mundo')?.invalid && escenarioForm.get('id_mundo')?.touched">
+        <option [value]="null">-- Selecciona un mundo --</option>
+        @for (mundo of mundos(); track mundo.id) {
+          <option [value]="mundo.id">{{ mundo.nombre }}</option>
+        }
+      </select>
+      @if (escenarioForm.get('id_mundo')?.invalid && escenarioForm.get('id_mundo')?.touched) {
+        <div class="invalid-feedback">Debe seleccionar un mundo</div>
+      }
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="escenarioForm.invalid">Crear</button>
+  </form>
+
+  @if (creado()) {
+    <div class="alert alert-success mt-3">Escenario creado con éxito</div>
   }
 
-  <label for="id_mundo">Mundo:</label>
-  <select formControlName="id_mundo">
-    <option [value]="null">-- Selecciona un mundo --</option>
-    @for (mundo of mundos(); track mundo.id) {
-      <option [value]="mundo.id">{{ mundo.nombre }}</option>
-    }
-  </select>
-  @if (escenarioForm.get('id_mundo')?.invalid && escenarioForm.get('id_mundo')?.touched) {
-    <p style="color:red;">Debe seleccionar un mundo</p>
+  @if (error()) {
+    <div class="alert alert-danger mt-3">{{ error() }}</div>
   }
-
-  <button type="submit" [disabled]="escenarioForm.invalid">Crear</button>
-</form>
-
-@if (creado()) {
-  <p style="color:green;">Escenario creado con éxito</p>
-}
-
-@if (error()) {
-  <p style="color:red;">{{ error() }}</p>
-}
+</div>

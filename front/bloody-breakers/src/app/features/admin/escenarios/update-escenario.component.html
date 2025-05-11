@@ -1,35 +1,46 @@
-<h1>Actualizar Escenario</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Actualizar Escenario</h1>
 
-@if (mensaje()) {
-  <p style="color: green;">{{ mensaje() }}</p>
-}
-@if (error()) {
-  <p style="color: red;">{{ error() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (escenarios().length > 0) {
-  <label>Selecciona un escenario:</label>
-  <select [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
-    <option [value]="null">-- Selecciona --</option>
-    @for (e of escenarios(); track e.id) {
-      <option [value]="e.id">{{ e.nombre }}</option>
-    }
-  </select>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (escenarioSeleccionado) {
-  <form [formGroup]="form" (ngSubmit)="actualizar()" style="margin-top: 20px;">
-    <label>Nombre:</label>
-    <input type="text" formControlName="nombre" />
+  @if (escenarios().length > 0) {
+    <div class="mb-3">
+      <label for="seleccionEscenario" class="form-label">Selecciona un escenario:</label>
+      <select id="seleccionEscenario" class="form-select"
+              [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
+        <option [value]="null">-- Selecciona --</option>
+        @for (e of escenarios(); track e.id) {
+          <option [value]="e.id">{{ e.nombre }}</option>
+        }
+      </select>
+    </div>
+  }
 
-    <label>Mundo:</label>
-    <select formControlName="id_mundo">
-      <option [value]="null">-- Selecciona un mundo --</option>
-      @for (m of mundos(); track m.id) {
-        <option [value]="m.id">{{ m.nombre }}</option>
-      }
-    </select>
+  @if (escenarioSeleccionado) {
+    <form [formGroup]="form" (ngSubmit)="actualizar()" class="needs-validation">
 
-    <button type="submit" [disabled]="form.invalid">Actualizar</button>
-  </form>
-}
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input id="nombre" type="text" formControlName="nombre" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="id_mundo" class="form-label">Mundo:</label>
+        <select id="id_mundo" formControlName="id_mundo" class="form-select">
+          <option [value]="null">-- Selecciona un mundo --</option>
+          @for (m of mundos(); track m.id) {
+            <option [value]="m.id">{{ m.nombre }}</option>
+          }
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Actualizar</button>
+    </form>
+  }
+</div>

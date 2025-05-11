@@ -1,55 +1,72 @@
-<h1>Actualizar Personaje</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Actualizar Personaje</h1>
 
-@if (mensaje()) {
-<p style="color: green;">{{ mensaje() }}</p>
-}
-@if (error()) {
-<p style="color: red;">{{ error() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (personajes().length > 0) {
-<label>Selecciona un personaje:</label>
-<select [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
-    <option [value]="null">-- Selecciona --</option>
-    @for (p of personajes(); track p.id) {
-    <option [value]="p.id">{{ p.nombre }}</option>
-    }
-</select>
-}
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-@if (personajeSeleccionado) {
-<form [formGroup]="form" (ngSubmit)="actualizar()" style="margin-top: 20px;">
-    <label>Nombre:</label>
-    <input type="text" formControlName="nombre" />
-
-    <label>Historia:</label>
-    <textarea formControlName="historia"></textarea>
-
-    <label>¿Es enemigo?</label>
-    <input type="checkbox" formControlName="esEnemigo" />
-
-    <label>Icono (URL Imgur):</label>
-    <input type="text" formControlName="iconoUrl" />
-    @if (form.get('iconoUrl')?.valid) {
-    <div style="margin-top: 10px;">
-        <h4>Vista previa del ícono:</h4>
-        <img [src]="form.get('iconoUrl')?.value" alt="icono"
-            style="max-width: 200px; max-height: 150px; display: block;" />
-    </div>
-    }
-
-    @if (form.get('iconoUrl')?.errors?.['imgurUrl']) {
-    <p style="color: red;">La URL debe ser válida de Imgur</p>
-    }
-
-    <label>Mundo:</label>
-    <select formControlName="id_mundo">
-        <option [value]="null">-- Selecciona un mundo --</option>
-        @for (m of mundos(); track m.id) {
-        <option [value]="m.id">{{ m.nombre }}</option>
+  @if (personajes().length > 0) {
+    <div class="mb-3">
+      <label for="seleccion" class="form-label">Selecciona un personaje:</label>
+      <select id="seleccion" class="form-select" [ngModel]="seleccionadoId()" (ngModelChange)="seleccionar($event)">
+        <option [value]="null">-- Selecciona --</option>
+        @for (p of personajes(); track p.id) {
+          <option [value]="p.id">{{ p.nombre }}</option>
         }
-    </select>
+      </select>
+    </div>
+  }
 
-    <button type="submit" [disabled]="form.invalid">Actualizar</button>
-</form>
-}
+  @if (personajeSeleccionado) {
+    <form [formGroup]="form" (ngSubmit)="actualizar()" class="needs-validation">
+
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input id="nombre" type="text" formControlName="nombre" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label for="historia" class="form-label">Historia:</label>
+        <textarea id="historia" formControlName="historia" class="form-control"></textarea>
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" id="esEnemigo" formControlName="esEnemigo" class="form-check-input" />
+        <label for="esEnemigo" class="form-check-label">¿Es enemigo?</label>
+      </div>
+
+      <div class="mb-3">
+        <label for="iconoUrl" class="form-label">Icono (URL Imgur):</label>
+        <input id="iconoUrl" type="text" formControlName="iconoUrl" class="form-control"
+               [class.is-invalid]="form.get('iconoUrl')?.errors?.['imgurUrl']" />
+        @if (form.get('iconoUrl')?.errors?.['imgurUrl']) {
+          <div class="invalid-feedback d-block">La URL debe ser válida de Imgur</div>
+        }
+      </div>
+
+      @if (form.get('iconoUrl')?.valid) {
+        <div class="mb-3">
+          <h5>Vista previa del ícono:</h5>
+          <img [src]="form.get('iconoUrl')?.value" alt="icono" class="img-fluid"
+               style="max-width: 200px; max-height: 150px;" />
+        </div>
+      }
+
+      <div class="mb-3">
+        <label for="id_mundo" class="form-label">Mundo:</label>
+        <select id="id_mundo" formControlName="id_mundo" class="form-select">
+          <option [value]="null">-- Selecciona un mundo --</option>
+          @for (m of mundos(); track m.id) {
+            <option [value]="m.id">{{ m.nombre }}</option>
+          }
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Actualizar</button>
+    </form>
+  }
+</div>

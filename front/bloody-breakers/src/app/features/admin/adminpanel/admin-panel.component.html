@@ -1,20 +1,20 @@
 <div class="container my-5">
   <h1 class="mb-4">Panel de Administración</h1>
 
-  <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="row row-cols-1 row-cols-md-1 g-4">
     @for (mod of rutasAgrupadas; track mod.entidad) {
       <div class="col">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title text-capitalize">{{ mod.entidad }}</h5>
+            <h1 class="card-title text-capitalize text-center">{{ mod.entidad }}</h1>
 
             @for (op of mod.operaciones; track op) {
               <a [routerLink]="['/admin', mod.entidad, op]"
-                 class="btn btn-sm w-100 mb-2"
+                 class="btn w-100 mb-2"
                  [ngClass]="{
-                   'btn-primary': op === 'create',
-                   'btn-warning': op === 'update',
-                   'btn-danger': op === 'delete'
+                   '': op === 'create',
+                   '': op === 'update',
+                   '': op === 'delete'
                  }">
                 {{ op.toUpperCase() }}
               </a>

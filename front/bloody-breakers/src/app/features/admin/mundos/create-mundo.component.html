@@ -1,25 +1,34 @@
-<h1>Crear nuevo Mundo</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Crear nuevo Mundo</h1>
 
-<form [formGroup]="mundoForm" (ngSubmit)="onSubmit()">
-  <label for="nombre">Nombre:</label>
-  <input id="nombre" type="text" formControlName="nombre" />
-  @if (mundoForm.get('nombre')?.invalid && mundoForm.get('nombre')?.touched) {
-    <p style="color:red;">El nombre es obligatorio</p>
+  <form [formGroup]="mundoForm" (ngSubmit)="onSubmit()" class="needs-validation">
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input id="nombre" type="text" formControlName="nombre" class="form-control"
+             [class.is-invalid]="mundoForm.get('nombre')?.invalid && mundoForm.get('nombre')?.touched" />
+      @if (mundoForm.get('nombre')?.invalid && mundoForm.get('nombre')?.touched) {
+        <div class="invalid-feedback">El nombre es obligatorio</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="historia" class="form-label">Historia:</label>
+      <textarea id="historia" formControlName="historia" class="form-control"
+                [class.is-invalid]="mundoForm.get('historia')?.invalid && mundoForm.get('historia')?.touched"></textarea>
+      @if (mundoForm.get('historia')?.invalid && mundoForm.get('historia')?.touched) {
+        <div class="invalid-feedback">La historia es obligatoria</div>
+      }
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="mundoForm.invalid">Crear</button>
+  </form>
+
+  @if (creado()) {
+    <div class="alert alert-success mt-3">Mundo creado con éxito</div>
   }
 
-  <label for="historia">Historia:</label>
-  <textarea id="historia" formControlName="historia"></textarea>
-  @if (mundoForm.get('historia')?.invalid && mundoForm.get('historia')?.touched) {
-    <p style="color:red;">La historia es obligatoria</p>
+  @if (error()) {
+    <div class="alert alert-danger mt-3">{{ error() }}</div>
   }
-
-  <button type="submit" [disabled]="mundoForm.invalid">Crear</button>
-</form>
-
-@if (creado()) {
-  <p style="color:green;">Mundo creado con éxito</p>
-}
-
-@if (error()) {
-  <p style="color:red;">{{ error() }}</p>
-}
+</div>

@@ -1,11 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DashboardComponent],
+  imports: [RouterOutlet, DashboardComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

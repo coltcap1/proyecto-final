@@ -1,0 +1,26 @@
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1D1D27;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+.footer .social {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.instagram-icon {
+  width: 36px;
+  height: 36px;
+  transition: transform 0.3s;
+}
+
+.instagram-icon:hover {
+  transform: scale(1.2);
+}

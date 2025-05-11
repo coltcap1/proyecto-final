@@ -8,7 +8,9 @@ import { MundosService } from '../../../core/services/mundos.service';
   selector: 'app-create-mundo',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './create-mundo.component.html'
+  templateUrl: './create-mundo.component.html',
+  styleUrl: './create-mundo.component.scss'
+
 })
 export class CreateMundoComponent {
   private fb = inject(FormBuilder);

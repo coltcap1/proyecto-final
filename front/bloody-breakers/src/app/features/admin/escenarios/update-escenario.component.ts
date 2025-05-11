@@ -11,6 +11,7 @@ import { Mundo } from '../../../models/mundo.model';
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './update-escenario.component.html',
+  styleUrl:'./update-escenario.component.scss'
 })
 export class UpdateEscenarioComponent implements OnInit {
   private escenarioService = inject(EscenariosService);

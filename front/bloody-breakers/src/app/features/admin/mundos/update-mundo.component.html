@@ -1,37 +1,49 @@
-<h1>Actualizar Mundo</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Actualizar Mundo</h1>
 
-@if (mensaje()) {
-<p style="color: green;">{{ mensaje() }}</p>
-}
-@if (error()) {
-<p style="color: red;">{{ error() }}</p>
-}
+  @if (mensaje()) {
+    <div class="alert alert-success">{{ mensaje() }}</div>
+  }
 
-@if (mundos().length > 0) {
-<label>Selecciona un mundo:</label>
-<select [ngModel]="seleccionadoId()" (ngModelChange)="seleccionadoId.set($event)">
-    <option [value]="null">-- Selecciona --</option>
-    @for (mundo of mundos(); track mundo.id) {
-    <option [value]="mundo.id">{{ mundo.nombre }}</option>
-    }
-</select>
+  @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  }
 
-}
+  @if (mundos().length > 0) {
+    <div class="mb-3">
+      <label for="seleccionMundo" class="form-label">Selecciona un mundo:</label>
+      <select id="seleccionMundo" class="form-select"
+              [ngModel]="seleccionadoId()" (ngModelChange)="seleccionadoId.set($event)">
+        <option [value]="null">-- Selecciona --</option>
+        @for (mundo of mundos(); track mundo.id) {
+          <option [value]="mundo.id">{{ mundo.nombre }}</option>
+        }
+      </select>
+    </div>
+  }
 
-@if (mundoSeleccionado()) {
-<form [formGroup]="form" (ngSubmit)="actualizar()" style="margin-top: 20px;">
-    <label>Nombre:</label>
-    <input type="text" formControlName="nombre" />
-    @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
-    <p style="color: red;">El nombre es obligatorio</p>
-    }
+  @if (mundoSeleccionado()) {
+    <form [formGroup]="form" (ngSubmit)="actualizar()" class="needs-validation">
 
-    <label>Historia:</label>
-    <textarea formControlName="historia"></textarea>
-    @if (form.get('historia')?.invalid && form.get('historia')?.touched) {
-    <p style="color: red;">La historia es obligatoria</p>
-    }
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input id="nombre" type="text" formControlName="nombre" class="form-control"
+               [class.is-invalid]="form.get('nombre')?.invalid && form.get('nombre')?.touched" />
+        @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+          <div class="invalid-feedback d-block">El nombre es obligatorio</div>
+        }
+      </div>
 
-    <button type="submit" [disabled]="form.invalid">Actualizar</button>
-</form>
-}
+      <div class="mb-3">
+        <label for="historia" class="form-label">Historia:</label>
+        <textarea id="historia" formControlName="historia" class="form-control"
+                  [class.is-invalid]="form.get('historia')?.invalid && form.get('historia')?.touched"></textarea>
+        @if (form.get('historia')?.invalid && form.get('historia')?.touched) {
+          <div class="invalid-feedback d-block">La historia es obligatoria</div>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Actualizar</button>
+    </form>
+  }
+</div>
