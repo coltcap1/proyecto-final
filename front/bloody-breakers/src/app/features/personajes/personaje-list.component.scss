@@ -12,19 +12,19 @@
 
 .personajes-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr)); // Hasta 4 por fila
-  gap: 0px; // Espaciado entre personajes
+  grid-template-columns: repeat(4, minmax(280px, 1fr)); // Hasta 4 por fila
+  gap: 35px; // Espaciado entre personajes
   width: 100%;
   max-width: 800px;
-  justify-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .personaje-card {
-  background-color: #9e3e45;
-  border: 2px solid #333; // Gris oscuro
+  background-color: #1D1D27;
   border-radius: 0.5rem; // Redondeado estilo ficha
-  width: 200px;
-  height: 200px;
+  width: 280px;
+  height: 280px;
   display: flex;
   justify-content: center;
   align-items: center;
