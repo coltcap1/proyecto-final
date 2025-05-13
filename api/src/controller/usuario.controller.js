@@ -1,20 +1,6 @@
 // controller/usuarios.controller.js
 const { Usuario, Rol } = require("../models/core.models");
 
-const me = async (req, res) => {
-    try {
-        const usuario = await Usuario.findByPk(req.user.id, {
-            attributes: { exclude: ["contrasena"] },
-            include: [{ model: Rol, as: "rol" }]
-        });
-        if (!usuario) return res.status(404).json({ message: "Usuario no encontrado" });
-
-        res.json(usuario);
-    } catch (error) {
-        res.status(500).json({ message: "Error al obtener datos del usuario", error });
-    }
-};
-
 const getUsuarios = async (req, res) => {
     try {
         const usuarios = await Usuario.findAll({
@@ -48,5 +34,4 @@ const getUsuarioById = async (req, res) => {
 module.exports = {
     getUsuarios,
     getUsuarioById,
-    me
 };

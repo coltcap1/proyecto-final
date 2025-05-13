@@ -8,6 +8,5 @@ const { verifyToken } = require("../middlewares/auth.middleware");
 // Rutas públicas
 router.get("/", controller.getUsuarios);
 router.get("/:id", controller.getUsuarioById);
-router.get("/me", verifyToken, controller.me);
 
 module.exports = router;
