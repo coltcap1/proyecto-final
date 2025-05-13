@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+constructor(private toastr: ToastrService) {}
+
+ngOnInit() {
+  this.toastr.success('Toastr funcionando', 'Éxito');
+}
 
 }

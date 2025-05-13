@@ -1,5 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
@@ -19,22 +21,25 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 function handleHttpError(error: HttpErrorResponse): void {
   const status = error.status;
   const msg = extractMessage(error);
+  const toastr = inject(ToastrService);
 
   switch (status) {
     case 400:
-      console.warn('Solicitud incorrecta:', msg);
+      toastr.warning(msg, 'Solicitud incorrecta');
       break;
     case 401:
-      console.warn('No autorizado:', msg);
+      toastr.error(msg, 'No autorizado');
       break;
     case 404:
-      console.warn('No encontrado:', msg);
+      toastr.info(msg, 'No encontrado');
+      console.log();
+      
       break;
     case 500:
-      console.error('Error interno del servidor:', msg);
+      toastr.error(msg, 'Error del servidor');
       break;
     default:
-      console.error(`Error HTTP ${status}:`, msg);
+      toastr.error(msg, `Error HTTP ${status}`);
       break;
   }
 

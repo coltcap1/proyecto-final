@@ -47,18 +47,5 @@ export class RegisterComponent implements OnInit {
       }
     });
 
-    //   // Simulación de petición al backend con delay
-    //   of(true).pipe(delay(1000)).subscribe(() => {
-    //     // Simular que el email ya está registrado
-    //     if (email === 'ya@registrado.com') {
-    //       this.errorMessage = 'Este email ya está registrado.';
-    //       this.successMessage = '';
-    //     } else {
-    //       this.successMessage = '¡Registro exitoso! Ya puedes iniciar sesión.';
-    //       this.errorMessage = '';
-    //       this.registerForm.reset();
-    //     }
-    //   });
-
   }
 }

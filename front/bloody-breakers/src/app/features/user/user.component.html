@@ -1,8 +1,14 @@
-@if (usuario()) {
-  <h2>Información del Usuario</h2>
-  <p><strong>ID:</strong> {{ usuario().id }}</p>
-  <p><strong>Email:</strong> {{ usuario().email }}</p>
-  <p><strong>Rol:</strong> {{ usuario().rol.rol }}</p>
-} @else {
-  <p>No hay usuario conectado.</p>
-}
+<div class="body">
+    <div class="info">
+        @if (usuario()) {
+
+        <h2>Información del Usuario</h2>
+        <p><strong>ID:</strong> {{ usuario()?.id }}</p>
+        <p><strong>Email:</strong> {{ usuario()?.email }}</p>
+        <p><strong>Rol:</strong> {{ usuario()?.rol?.rol }}</p>
+
+        } @else {
+        <p>No hay usuario conectado.</p>
+        }
+    </div>
+</div>

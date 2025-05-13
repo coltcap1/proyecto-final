@@ -49,6 +49,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/galeria/galeria.component').then(m => m.GaleriaComponent)
+  },
+  {
+    path: 'user',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/user/user.component').then(m => m.UserComponent)
   }
   ,
   {

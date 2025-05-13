@@ -15,10 +15,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([errorInterceptor, authInterceptor])),
     provideAnimations(),
     importProvidersFrom(ToastrModule.forRoot({
-      positionClass: 'toast-top-right', // ✅ posición arriba a la derecha
-      timeOut: 3000,                     // opcional: duración en ms
-      closeButton: true,                 // opcional: botón de cerrar
-      progressBar: true                  // opcional: barra de progreso
+      positionClass: 'toast-bottom-right', 
+      timeOut: 3000,                     
+      closeButton: true,                 
+      progressBar: true                  
     }))
 
   ]
