@@ -25,7 +25,8 @@
 
 /* You can add global styles to this file, and also import other style files */
 body{
-    background-color: #BF2541;
+    background: url("../assets/background.jpg");
+    background-size: cover;
     overflow-y: scroll; /* Permitir scroll vertical */
     scrollbar-width: none; /* Ocultar scrollbar en Firefox */
 }
@@ -74,14 +75,13 @@ body{
 .glitched::after {
  padding: 16px 20px;
  font-size: 18px;
- background: linear-gradient(45deg, transparent 5%, #BF2541 5%);
  border: 0;
+ box-shadow: 2px 2px 2px 0 #1D1D27 ;
  color: #1D1D27 !important;
  font-size: large !important;
  font-weight: bold;
  letter-spacing: 3px;
  line-height: 1;
- box-shadow: 6px 0px 0px #BFBFBF;
  outline: transparent;
  position: relative;
 }
