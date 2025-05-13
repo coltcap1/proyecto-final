@@ -1,8 +1,22 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { Usuario } = require("../models/core.models")
+const { Usuario, Rol } = require("../models/core.models")
 
 const SECRET = process.env.JTW_KEY;
+
+const me = async (req, res) => {
+    try {
+        const usuario = await Usuario.findByPk(req.user.id, {
+            attributes: { exclude: ["contrasena"] },
+            include: [{ model: Rol, as: "rol" }]
+        });
+        if (!usuario) return res.status(404).json({ message: "Usuario no encontrado" });
+
+        res.json(usuario);
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener datos del usuario", error });
+    }
+};
 
 const register = async (req, res) => {
     const { email, password } = req.body;
@@ -50,5 +64,6 @@ const login = async (req, res) => {
 
 module.exports = {
     register,
-    login
+    login,
+    me
 }

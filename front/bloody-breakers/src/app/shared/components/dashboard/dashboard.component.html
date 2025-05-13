@@ -13,7 +13,9 @@
   }
 
   @if (isLoggedIn()) {
-    <button class="glitched" (click)="navegar('/galeria')">GALERÍA</button>
+    <button class="glitched" (click)="navegar('/galeria')">EXTRAS</button>
+    <button class="glitched" (click)="navegar('/user')">USUARIO</button>
+
   }
 
   @if (isAdmin()) {

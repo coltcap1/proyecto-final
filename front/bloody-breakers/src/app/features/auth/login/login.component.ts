@@ -30,22 +30,27 @@ export class LoginComponent implements OnInit {
 
   errorMessage = '';
 
-  onSubmit(): void {
-    if (this.loginForm.invalid) return;
+ onSubmit(): void {
+  if (this.loginForm.invalid) return;
 
-    this.loginService.login(this.loginForm.value).subscribe({
-      next: (response) => {
-        console.log('Rol recibido:', response.rol); // 👈 debug
-        this.loginService.guardarCredenciales(response.token, response.rol);
+  this.loginService.login(this.loginForm.value).subscribe({
+    next: (response) => {
+      // Guardar solo el token
+      this.loginService.guardarCredenciales(response.token);
+
+      // Navegar solo cuando se haya obtenido el usuario, o directamente
+      setTimeout(() => {
         this.toastr.success('Sesión iniciada correctamente');
         this.router.navigate(['/']);
-      },
-      error: () => {
-        this.toastr.error('Credenciales inválidas o error de servidor');
-        this.errorMessage = '';
-      }
-    });
-  }
+      }, 500); // pequeño retraso opcional para asegurar que /auth/me se resuelva
+    },
+    error: () => {
+      this.toastr.error('Credenciales inválidas o error de servidor');
+      this.errorMessage = '';
+    }
+  });
+}
+
 
   get email() {
     return this.loginForm.get('email');
