@@ -18,7 +18,7 @@ export class LoginService {
   private user = signal<UsuarioActual | null>(this.cargarUsuario());
 
   readonly isLoggedIn = computed(() => !!this.jwt());
-  readonly isAdmin = computed(() => this.user()?.rol.rol == '1');
+  readonly isAdmin = computed(() => this.user()?.rol.rol == 'admin');
 
   login(credentials: { email: string; password: string }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.loginUrl, credentials);
