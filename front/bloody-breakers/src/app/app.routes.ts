@@ -10,6 +10,12 @@ export const routes: Routes = [
       import('./features/inicio/home.component').then(m => m.HomeComponent),
   },
   {
+    path: 'home',
+    pathMatch: 'full',
+    loadComponent: () =>
+      import('./features/inicio/home.component').then(m => m.HomeComponent),
+  },
+  {
     path: 'mundos',
     pathMatch: 'full',
     loadComponent: () =>
@@ -153,6 +159,6 @@ export const routes: Routes = [
   ,
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'home',
   }
 ];

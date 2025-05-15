@@ -77,7 +77,7 @@ export class CreatePersonajeComponent implements OnInit {
     this.personajeService.create(payload).subscribe({
       next: () => {
         this.creado.set(true);
-        this.router.navigate(['/personajes']);
+        (payload.esEnemigo) ? this.router.navigate(['/enemigos']) : this.router.navigate(['/personajes']);
       },
       error: (e) => {
         this.error.set('Error al crear personaje');
