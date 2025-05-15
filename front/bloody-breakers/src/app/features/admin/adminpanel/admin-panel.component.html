@@ -3,27 +3,29 @@
 
   <div class="row row-cols-1 row-cols-md-1 g-4">
     @for (mod of rutasAgrupadas; track mod.entidad) {
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h1 class="card-title text-capitalize text-center">{{ mod.entidad }}</h1>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h1 class="card-title text-capitalize text-center">{{ mod.entidad }}</h1>
 
-            @for (op of mod.operaciones; track op) {
-              <a [routerLink]="['/admin', mod.entidad, op]"
-                 class="btn w-100 mb-2"
-                 [ngClass]="{
+          @for (op of mod.operaciones; track op) {
+          <a [routerLink]="['/admin', mod.entidad, op]" (click)="scrollToRouterOutlet()" class="btn w-100 mb-2"
+            [ngClass]="{
                    '': op === 'create',
                    '': op === 'update',
                    '': op === 'delete'
                  }">
-                {{ op.toUpperCase() }}
-              </a>
-            }
-          </div>
+            {{ op.toUpperCase() }}
+          </a>
+          }
         </div>
       </div>
+    </div>
     }
 
-    <router-outlet></router-outlet>
+    <div id="router-destino">
+      <router-outlet></router-outlet>
+    </div>
+
   </div>
 </div>

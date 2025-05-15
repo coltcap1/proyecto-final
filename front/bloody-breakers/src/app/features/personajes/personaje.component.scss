@@ -9,13 +9,14 @@
 }
 
 .modal-content {
-  background-color: #bf2541;
+  background-color: #1D1D27;
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
   border-radius: 8px;
   padding: 2rem;
   max-width: 500px;
   width: 90%;
   position: relative;
+  color: white !important;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   animation: modalAppear 0.3s ease-out;
 

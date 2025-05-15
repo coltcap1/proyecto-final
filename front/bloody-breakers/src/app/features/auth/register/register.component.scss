@@ -9,3 +9,18 @@
 .container{
     min-height: 71vh;
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  background-color: none;
+  margin: 5%;
+}
+
+.loader-img {
+  width: 20vw;
+  height: 100%;
+  animation: pulseOpacity 2s infinite;
+}

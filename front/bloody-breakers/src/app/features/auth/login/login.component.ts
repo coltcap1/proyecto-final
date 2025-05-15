@@ -5,11 +5,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../../core/services/login.service';
+import { LoaderComponent } from '../../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, LoaderComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   private loginService = inject(LoginService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
-
+  protected loading = false;
   loginForm!: FormGroup;
 
   ngOnInit(): void {
@@ -30,26 +31,28 @@ export class LoginComponent implements OnInit {
 
   errorMessage = '';
 
- onSubmit(): void {
-  if (this.loginForm.invalid) return;
+  onSubmit(): void {
+    if (this.loginForm.invalid) return;
+    this.loading = true;
+    this.loginService.login(this.loginForm.value).subscribe({
+      next: (response) => {
+        // Guardar solo el token
+        this.loginService.guardarCredenciales(response.token);
 
-  this.loginService.login(this.loginForm.value).subscribe({
-    next: (response) => {
-      // Guardar solo el token
-      this.loginService.guardarCredenciales(response.token);
-
-      // Navegar solo cuando se haya obtenido el usuario, o directamente
-      setTimeout(() => {
-        this.toastr.success('Sesión iniciada correctamente');
-        this.router.navigate(['/']);
-      }, 500); // pequeño retraso opcional para asegurar que /auth/me se resuelva
-    },
-    error: () => {
-      this.toastr.error('Credenciales inválidas o error de servidor');
-      this.errorMessage = '';
-    }
-  });
-}
+        // Navegar solo cuando se haya obtenido el usuario, o directamente
+        setTimeout(() => {
+          this.toastr.success('Sesión iniciada correctamente');
+          this.router.navigate(['/']);
+          this.loading = false;
+        }, 500); // pequeño retraso opcional para asegurar que /auth/me se resuelva
+      },
+      error: () => {
+        this.loading = false;
+        this.toastr.error('Credenciales inválidas o error de servidor');
+        this.errorMessage = '';
+      }
+    });
+  }
 
 
   get email() {

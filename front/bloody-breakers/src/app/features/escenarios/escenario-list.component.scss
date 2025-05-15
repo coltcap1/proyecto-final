@@ -1,16 +1,17 @@
-
 .escenarios-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem 5%;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  gap: 20px;
+  align-items: center;
+  height: 80vh;
+}
 
-  @media (max-width: 768px) {
+
+@media (max-width: 768px) {
   .escenarios-container {
-    padding: 1rem 1rem; /* 🔧 Menor padding lateral en móvil */
-    gap: 1rem; /* 🔧 Reduce la separación entre elementos */
+    padding: 1rem 1rem;
+    /* 🔧 Menor padding lateral en móvil */
+    gap: 1rem;
+    /* 🔧 Reduce la separación entre elementos */
   }
 }

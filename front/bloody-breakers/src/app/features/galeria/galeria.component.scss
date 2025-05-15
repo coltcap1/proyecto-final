@@ -41,6 +41,16 @@
   width: 90%;
 }
 
+a {
+  color: #1D1D27;
+  text-decoration: none;
+
+  &:hover{
+    color: #bf2541;
+    font-size: large;
+  }
+}
+
 .modal-contenido img {
   max-width: 100%;
   max-height: 400px;

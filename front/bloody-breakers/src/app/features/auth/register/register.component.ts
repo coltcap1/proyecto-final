@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
   private fb = inject(FormBuilder);
 
   private registerService = inject(RegisterService);
+  protected loading = false;
 
   registerForm!: FormGroup;
   successMessage = '';
@@ -28,20 +29,24 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     if (this.registerForm.invalid) return;
 
+    this.loading = true;
     const { email, password, confirmPassword } = this.registerForm.value;
 
     if (password !== confirmPassword) {
       this.errorMessage = 'Las contraseñas no coinciden';
+      this.loading = false;
       return;
     }
 
     this.registerService.register({ email, password }).subscribe({
       next: () => {
+        this.loading = false;
         this.successMessage = '¡Registro exitoso! Ya puedes iniciar sesión.';
         this.errorMessage = '';
         this.registerForm.reset();
       },
       error: () => {
+        this.loading = false;
         this.errorMessage = 'Error al registrar. Intenta con otro correo.';
         this.successMessage = '';
       }

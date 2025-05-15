@@ -47,6 +47,16 @@ export class AdminPanelComponent {
     }));
   }
 
+  scrollToRouterOutlet(): void {
+  setTimeout(() => {
+    const elemento = document.getElementById('router-destino');
+    if (elemento) {
+      elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 700); // retraso para asegurar que el nuevo contenido se haya cargado
+}
+
+
   logout() {
     this.loginService.logout();
     this.router.navigate(['/']);

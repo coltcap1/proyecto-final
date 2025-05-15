@@ -1,12 +1,27 @@
-.glitched{
+.glitched {
     background: #bf2541;
     color: #1D1D27;
 }
 
-.card{
+.card {
     background-color: #bfbfbf;
 }
 
-.container{
+.container {
     min-height: 71vh;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  background-color: none;
+  margin: 5%;
+}
+
+.loader-img {
+  width: 20vw;
+  height: 100%;
+  animation: pulseOpacity 2s infinite;
 }
