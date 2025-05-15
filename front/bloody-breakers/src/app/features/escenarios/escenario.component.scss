@@ -14,7 +14,7 @@
   }
   
   .escenario-image {
-    flex: 0 0 33%;
+    flex: 0 0 35%;
     margin-right: 5%;
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@
   
   .escenario-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 8px;
     object-fit: cover;
   }
@@ -40,7 +40,7 @@
     text-align: center;
     margin: 0;
     font-size: clamp(2rem, 5vw, 3rem);
-    flex: 0 0 15%;
+    flex: 0 0 0%;
     display: flex;
     align-items: center;
     justify-content: center;
